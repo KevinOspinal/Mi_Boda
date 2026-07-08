@@ -1,0 +1,11 @@
+Coloca aquí el archivo de música de fondo.
+
+1. Consigue la canción en formato .mp3 (idealmente suave/instrumental).
+2. Renómbrala EXACTAMENTE:  fondo.mp3
+3. Déjala en esta carpeta:   public/music/fondo.mp3
+
+La música arrancará sola cuando el invitado toque el sobre para abrirlo
+(los navegadores no permiten sonido automático al cargar la página),
+y podrá activarse/silenciarse con el botón flotante de la nota musical.
+
+¿Quieres otro nombre o formato? Cámbialo en app/config/wedding.ts -> music.src

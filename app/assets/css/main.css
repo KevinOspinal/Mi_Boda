@@ -1,0 +1,82 @@
+@import 'tailwindcss';
+
+/* ==========================================================================
+   Design tokens — Kevin & Daniela
+   Paleta: ROSADO Y BLANCO. Romántica, luminosa, editorial y premium.
+   Tokens SEMÁNTICOS (surface/ink/primary…) para que un cambio de paleta se
+   haga en un solo lugar sin tocar componentes.
+   En Tailwind v4 generan utilidades: bg-surface, text-ink, text-primary, etc.
+   ========================================================================== */
+@theme {
+  /* Escala rosa cruda (por si se necesita afinar) */
+  --color-white: #ffffff;
+  --color-blush-50: #fdf4f7;
+  --color-blush-100: #fbe9ef;
+  --color-blush-200: #f6d3de;
+  --color-rose-300: #eeaec2;
+  --color-rose-400: #e488a3;
+  --color-rose-500: #d46a88;
+  --color-rose-600: #b9506e;
+
+  /* Tokens semánticos (los que usan los componentes) */
+  --color-surface: #fffafb; /* fondo de página: blanco cálido rosado */
+  --color-surface-alt: #fbeef3; /* secciones/tarjetas alternas */
+  --color-ink: #4a2b36; /* texto principal: plum profundo, alto contraste */
+  --color-ink-soft: #8a6472; /* texto secundario */
+  --color-primary: #d46a88; /* acento rosa */
+  --color-primary-soft: #e488a3;
+  --color-line: #f0d9e1; /* bordes/divisores sutiles */
+
+  /* Tipografía */
+  --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  /* Easing base (se refina con CustomEase en GSAP) */
+  --ease-elegant: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --spacing-section: 6rem;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-surface);
+  color: var(--color-ink);
+  /* Nombre literal para que @nuxt/fonts detecte y auto-hospede la familia. */
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Tipografía display por defecto + hint literal para el auto-hosting de fuentes. */
+h1,
+h2,
+h3,
+h4 {
+  font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
