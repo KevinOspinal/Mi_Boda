@@ -27,3 +27,10 @@ export interface Rsvp {
 
 /** Estado derivado de un invitado, para estadísticas y panel futuro. */
 export type GuestStatus = 'pending' | 'viewed' | 'confirmed' | 'declined'
+
+/** Respuesta previa del invitado (si ya confirmó), para bloquear el formulario. */
+export interface ExistingRsvp {
+  attending: boolean
+  guestsCount: number
+  message: string | null
+}

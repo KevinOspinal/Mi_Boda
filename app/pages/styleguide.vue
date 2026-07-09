@@ -4,13 +4,13 @@ useHead({ title: 'Styleguide · Kevin & Daniela' })
 
 const colors = [
   { name: 'white', value: '#ffffff' },
-  { name: 'surface', value: '#fffafb' },
-  { name: 'surface-alt', value: '#fbeef3' },
-  { name: 'primary', value: '#d46a88' },
-  { name: 'primary-soft', value: '#e488a3' },
-  { name: 'ink', value: '#4a2b36' },
-  { name: 'ink-soft', value: '#8a6472' },
-  { name: 'line', value: '#f0d9e1' },
+  { name: 'surface', value: '#fafbf6' },
+  { name: 'surface-alt', value: '#eef1e5' },
+  { name: 'primary', value: '#6b7a45' },
+  { name: 'primary-soft', value: '#97a06d' },
+  { name: 'ink', value: '#2e3320' },
+  { name: 'ink-soft', value: '#6d7360' },
+  { name: 'line', value: '#e0e5d2' },
 ]
 
 const musicActive = ref(false)

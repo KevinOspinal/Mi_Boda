@@ -14,3 +14,8 @@ export interface Guest {
   /** Primera vez que abrió su invitación (tracking "visto"). */
   openedAt: string | null
 }
+
+/** Datos que devuelve el endpoint de invitación: el invitado + su respuesta previa. */
+export interface InviteData extends Guest {
+  rsvp: import('./rsvp').ExistingRsvp | null
+}

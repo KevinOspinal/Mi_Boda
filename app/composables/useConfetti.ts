@@ -5,7 +5,7 @@
 export function useConfetti() {
   const { $gsap } = useNuxtApp()
 
-  const COLORS = ['#d46a88', '#e488a3', '#f6d3de', '#ffffff', '#eeaec2']
+  const COLORS = ['#6b7a45', '#97a06d', '#dce2c8', '#ffffff', '#c2cb9f']
 
   function burst(count = 90) {
     if (import.meta.server) return

@@ -40,7 +40,7 @@ onBeforeUnmount(() => ctx?.revert())
   >
     <div
       aria-hidden="true"
-      class="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_45%_at_50%_35%,rgba(212,106,136,0.12),transparent_70%)]"
+      class="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_45%_at_50%_35%,rgba(107,122,69,0.12),transparent_70%)]"
     />
 
     <!-- Acentos botánicos -->

@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import type { Guest } from '~~/shared/types/guest'
+import type { ExistingRsvp } from '~~/shared/types/rsvp'
 import { useRsvp } from '~/composables/useRsvp'
 import { useConfetti } from '~/composables/useConfetti'
 
-const props = defineProps<{ guest: Guest }>()
+const props = defineProps<{ guest: Guest; existingRsvp: ExistingRsvp | null }>()
 
 const { submitting, success, errorMsg, submit } = useRsvp()
 const { burst } = useConfetti()
@@ -13,7 +14,17 @@ const attending = ref<boolean | null>(null)
 const guestsCount = ref(props.guest.maxPasses)
 const message = ref('')
 
-// Celebración al confirmar asistencia.
+// ¿Ya había respondido antes (guardado en la BD)? → se bloquea el formulario.
+const alreadyResponded = computed(() => props.existingRsvp !== null)
+const responded = computed(() => success.value || alreadyResponded.value)
+const respondedAttending = computed(() =>
+  success.value ? attending.value === true : (props.existingRsvp?.attending ?? false),
+)
+const respondedCount = computed(() =>
+  success.value ? guestsCount.value : (props.existingRsvp?.guestsCount ?? 0),
+)
+
+// Celebración al confirmar asistencia (solo al enviar en el momento).
 watch(success, (ok) => {
   if (ok && attending.value) burst()
 })
@@ -55,8 +66,8 @@ const field =
         · {{ guest.maxPasses }} {{ passesLabel }}
       </p>
 
-      <!-- Estado de éxito -->
-      <div v-if="success" class="mt-10 rounded-2xl border border-line bg-white p-10 text-center">
+      <!-- Ya respondió (recién enviado o guardado antes) → se bloquea el formulario -->
+      <div v-if="responded" class="mt-10 rounded-2xl border border-line bg-white p-10 text-center">
         <div
           class="mx-auto grid h-14 w-14 place-items-center rounded-full bg-primary/10 text-primary"
           aria-hidden="true"
@@ -66,18 +77,31 @@ const field =
           </svg>
         </div>
         <h3 class="mt-5 font-display text-2xl text-ink">
-          {{ attending ? '¡Gracias por confirmar!' : 'Gracias por avisarnos' }}
+          <template v-if="success">
+            {{ respondedAttending ? '¡Gracias por confirmar!' : 'Gracias por avisarnos' }}
+          </template>
+          <template v-else>
+            {{ respondedAttending ? '¡Ya confirmaste tu asistencia!' : 'Ya registramos tu respuesta' }}
+          </template>
         </h3>
         <p class="mt-2 text-sm text-ink-soft">
-          {{
-            attending
-              ? 'Nos hace muy felices que nos acompañes en este día tan especial.'
-              : 'Lamentamos que no puedas acompañarnos. ¡Te tendremos presente!'
-          }}
+          <template v-if="respondedAttending">
+            <template v-if="respondedCount > 1">
+              Te esperamos con {{ respondedCount }} personas. ¡Nos hace muy felices que nos
+              acompañes!
+            </template>
+            <template v-else>
+              Nos hace muy felices que nos acompañes en este día tan especial.
+            </template>
+          </template>
+          <template v-else> Lamentamos que no puedas acompañarnos. ¡Te tendremos presente! </template>
+        </p>
+        <p class="mt-5 text-[0.65rem] uppercase tracking-[0.25em] text-ink-soft/50">
+          Tu respuesta quedó guardada
         </p>
       </div>
 
-      <!-- Formulario -->
+      <!-- Formulario (solo si aún no ha respondido) -->
       <form v-else class="mt-8 space-y-6" @submit.prevent="onSubmit">
         <!-- Asistencia -->
         <fieldset>

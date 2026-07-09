@@ -1,10 +1,11 @@
-import type { Guest } from '~~/shared/types/guest'
+import type { InviteData } from '~~/shared/types/guest'
 
 /**
  * GET /api/invite/:code
- * Devuelve los datos del invitado y marca `opened_at` la primera vez que abre.
+ * Devuelve los datos del invitado, su respuesta previa (si ya confirmó) y
+ * marca `opened_at` la primera vez que abre.
  */
-export default defineEventHandler(async (event): Promise<Guest> => {
+export default defineEventHandler(async (event): Promise<InviteData> => {
   const raw = getRouterParam(event, 'code')
   const code = raw?.trim().toLowerCase()
   if (!code) {
@@ -33,6 +34,13 @@ export default defineEventHandler(async (event): Promise<Guest> => {
       .eq('id', data.id)
   }
 
+  // Respuesta previa (si ya confirmó) para no permitir reenviar.
+  const { data: rsvpRow } = await supabase
+    .from('rsvps')
+    .select('attending, guests_count, message')
+    .eq('guest_id', data.id)
+    .maybeSingle()
+
   return {
     id: data.id,
     code: data.code,
@@ -40,5 +48,12 @@ export default defineEventHandler(async (event): Promise<Guest> => {
     maxPasses: data.max_passes,
     groupLabel: data.group_label,
     openedAt: data.opened_at,
+    rsvp: rsvpRow
+      ? {
+          attending: rsvpRow.attending,
+          guestsCount: rsvpRow.guests_count,
+          message: rsvpRow.message,
+        }
+      : null,
   }
 })

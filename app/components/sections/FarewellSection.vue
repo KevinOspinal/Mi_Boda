@@ -6,7 +6,7 @@ defineProps<{ farewell: WeddingConfig['farewell']; monogram: string }>()
 
 const { prefersReduced } = useReducedMotion()
 
-const COLORS = ['#eeaec2', '#e488a3', '#f6d3de', '#d46a88']
+const COLORS = ['#c2cb9f', '#97a06d', '#dce2c8', '#6b7a45']
 const petals = Array.from({ length: 16 }, () => ({
   left: Math.random() * 100,
   size: 10 + Math.random() * 12,
@@ -37,7 +37,7 @@ const petals = Array.from({ length: 16 }, () => ({
 
     <div
       aria-hidden="true"
-      class="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_45%_at_50%_45%,rgba(212,106,136,0.12),transparent_70%)]"
+      class="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_45%_at_50%_45%,rgba(107,122,69,0.12),transparent_70%)]"
     />
 
     <BotanicalSprig

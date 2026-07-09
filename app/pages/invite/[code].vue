@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Guest } from '~~/shared/types/guest'
+import type { InviteData } from '~~/shared/types/guest'
 import { wedding } from '~/config/wedding'
 import { useAudio } from '~/composables/useAudio'
 import { useExperienceStore } from '~/stores/experience'
@@ -14,7 +14,7 @@ const {
   error,
   refresh,
   status,
-} = await useFetch<Guest>(() => `/api/invite/${code.value}`, {
+} = await useFetch<InviteData>(() => `/api/invite/${code.value}`, {
   key: () => `invite-${code.value}`,
   retry: 2,
   retryDelay: 500,
@@ -83,7 +83,7 @@ useSeoMeta({
         <DressCodeSection :dress-code="wedding.dressCode" />
         <GiftsSection v-if="wedding.gifts" :gifts="wedding.gifts" />
         <MapSection :venues="wedding.venues" />
-        <RsvpSection :guest="guest" />
+        <RsvpSection :guest="guest" :existing-rsvp="guest.rsvp" />
         <FarewellSection :farewell="wedding.farewell" :monogram="wedding.couple.monogram" />
       </template>
 

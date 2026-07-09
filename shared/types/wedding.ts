@@ -45,6 +45,8 @@ export interface WeddingConfig {
   itinerary: ItineraryItem[]
   dressCode: {
     title: string
+    /** Nivel de etiqueta destacado, ej. "Elegante". */
+    level: string
     description: string
     palette?: string[]
   }

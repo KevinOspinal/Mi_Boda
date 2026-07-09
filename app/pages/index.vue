@@ -13,7 +13,7 @@ const { couple } = wedding
     <!-- Halo de luz suave de fondo -->
     <div
       aria-hidden="true"
-      class="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_45%_at_50%_35%,rgba(212,106,136,0.14),transparent_70%)]"
+      class="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_45%_at_50%_35%,rgba(107,122,69,0.14),transparent_70%)]"
     />
 
     <p class="mb-6 text-sm uppercase tracking-[0.4em] text-ink-soft/70">

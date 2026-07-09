@@ -79,14 +79,8 @@ export const wedding: WeddingConfig = {
 
   dressCode: {
     title: 'Código de Vestimenta',
-    description:
-      'Vestimenta formal. Queremos que nos acompañes luciendo elegante para celebrar juntos este día tan especial.',
-
-    palette: [
-      '#4a2b36',
-      '#d46a88',
-      '#efe7d6',
-    ],
+    level: 'Formal',
+    description: 'Por favor, evita los colores blanco y sus derivados.',
   },
 
   // Música de fondo: coloca tu archivo en public/music/ y pon aquí su ruta.

@@ -73,9 +73,10 @@ onBeforeUnmount(() => ctx?.revert())
         <!-- La carta dentro del sobre (oculta tras las solapas) -->
         <div ref="card" class="layer card">
           <div ref="cardContent" class="card__content">
-            <p class="font-display text-2xl text-primary">{{ monogram }}</p>
-            <div class="my-2 h-px w-10 bg-primary/40" />
-            <p class="font-display text-sm tracking-wide text-ink">{{ coupleNames }}</p>
+            <p class="card__kicker">Nuestra Boda</p>
+            <p class="card__mono font-display">{{ monogram }}</p>
+            <OrnamentDivider class="card__orn" />
+            <p class="card__names font-display">{{ coupleNames }}</p>
           </div>
         </div>
 
@@ -120,7 +121,7 @@ onBeforeUnmount(() => ctx?.revert())
   width: clamp(280px, 84vw, 380px);
   aspect-ratio: 7 / 5;
   transform-style: preserve-3d;
-  filter: drop-shadow(0 26px 40px rgba(120, 30, 55, 0.28));
+  filter: drop-shadow(0 26px 40px rgba(60,66,40, 0.28));
 }
 .layer {
   position: absolute;
@@ -130,7 +131,7 @@ onBeforeUnmount(() => ctx?.revert())
 /* Cuerpo trasero (papel) */
 .back {
   border-radius: 9px;
-  background: linear-gradient(155deg, #fbeef3 0%, #f4d6e1 60%, #edc4d4 100%);
+  background: linear-gradient(155deg, #f6f4ea 0%, #ecead8 60%, #e0dec7 100%);
 }
 
 /* Carta interior */
@@ -143,18 +144,51 @@ onBeforeUnmount(() => ctx?.revert())
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  padding-top: 14%;
+  justify-content: center;
+  padding: 12%;
   border-radius: 4px;
-  background: linear-gradient(180deg, #ffffff 0%, #fff7fa 100%);
-  box-shadow: 0 8px 18px -10px rgba(120, 30, 55, 0.35);
+  background: linear-gradient(180deg, #ffffff 0%, #fbfaf1 100%);
+  box-shadow: 0 8px 18px -10px rgba(60, 66, 40, 0.35);
   transform-origin: bottom center;
+}
+/* Marco interior delicado */
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 6.5%;
+  border: 1px solid var(--color-primary);
+  border-radius: 3px;
+  opacity: 0.32;
+  pointer-events: none;
 }
 .card__content {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   opacity: 0;
+}
+.card__kicker {
+  font-size: 0.5rem;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+}
+.card__mono {
+  margin-top: 6px;
+  font-size: clamp(1.7rem, 8.5vw, 2.5rem);
+  font-weight: 500;
+  line-height: 1;
+  color: var(--color-primary);
+}
+.card__orn {
+  width: 66% !important;
+  margin: 9px 0;
+}
+.card__names {
+  font-size: clamp(0.95rem, 4.6vw, 1.25rem);
+  letter-spacing: 0.02em;
+  color: var(--color-ink);
 }
 
 /* Solapas plegadas — distintos tonos crean las costuras (papel real) */
@@ -165,15 +199,15 @@ onBeforeUnmount(() => ctx?.revert())
 }
 .flap-left {
   clip-path: polygon(0 0, 0 100%, 50% 52%);
-  background: linear-gradient(90deg, #fbe8f0 0%, #f2d3e0 100%);
+  background: linear-gradient(90deg, #f6f4ea 0%, #eae8d5 100%);
 }
 .flap-right {
   clip-path: polygon(100% 0, 100% 100%, 50% 52%);
-  background: linear-gradient(270deg, #ecc9d9 0%, #f0cfdd 100%);
+  background: linear-gradient(270deg, #e2e0c9 0%, #e9e7d3 100%);
 }
 .flap-bottom {
   clip-path: polygon(0 100%, 100% 100%, 50% 52%);
-  background: linear-gradient(0deg, #e5bcd0 0%, #efccdb 100%);
+  background: linear-gradient(0deg, #d8d6bc 0%, #e6e4cf 100%);
   border-radius: 0 0 9px 9px;
 }
 
@@ -211,9 +245,9 @@ onBeforeUnmount(() => ctx?.revert())
   transform: rotateX(0deg);
   backface-visibility: hidden;
   clip-path: polygon(0 0, 100% 0, 50% 52%);
-  background: linear-gradient(180deg, #fbe6ee 0%, #f3d3e0 70%, #ecc7d7 100%);
+  background: linear-gradient(180deg, #f3f1e3 0%, #e9e7d4 70%, #dddbc4 100%);
   border-radius: 9px 9px 0 0;
-  filter: drop-shadow(0 4px 5px rgba(120, 30, 55, 0.22));
+  filter: drop-shadow(0 4px 5px rgba(60,66,40, 0.22));
 }
 
 /* Textura de papel (grano fino) */
@@ -234,7 +268,7 @@ onBeforeUnmount(() => ctx?.revert())
   border-radius: 9px;
   background:
     radial-gradient(80% 55% at 50% 8%, rgba(255, 255, 255, 0.45), transparent 60%),
-    radial-gradient(120% 90% at 50% 55%, transparent 55%, rgba(120, 30, 55, 0.12) 100%);
+    radial-gradient(120% 90% at 50% 55%, transparent 55%, rgba(60,66,40, 0.12) 100%);
 }
 
 /* Sombra bajo el sello (asienta la cera en el pliegue) */
@@ -247,7 +281,7 @@ onBeforeUnmount(() => ctx?.revert())
   z-index: 5;
   transform: translate(-50%, -50%);
   border-radius: 9999px;
-  background: radial-gradient(closest-side, rgba(120, 30, 55, 0.28), transparent 72%);
+  background: radial-gradient(closest-side, rgba(60,66,40, 0.28), transparent 72%);
   pointer-events: none;
 }
 

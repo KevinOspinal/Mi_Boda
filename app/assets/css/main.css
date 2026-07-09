@@ -2,30 +2,30 @@
 
 /* ==========================================================================
    Design tokens — Kevin & Daniela
-   Paleta: ROSADO Y BLANCO. Romántica, luminosa, editorial y premium.
+   Paleta: BLANCO Y VERDE OLIVA. Natural, elegante, editorial y premium.
    Tokens SEMÁNTICOS (surface/ink/primary…) para que un cambio de paleta se
    haga en un solo lugar sin tocar componentes.
    En Tailwind v4 generan utilidades: bg-surface, text-ink, text-primary, etc.
    ========================================================================== */
 @theme {
-  /* Escala rosa cruda (por si se necesita afinar) */
+  /* Escala oliva cruda (por si se necesita afinar) */
   --color-white: #ffffff;
-  --color-blush-50: #fdf4f7;
-  --color-blush-100: #fbe9ef;
-  --color-blush-200: #f6d3de;
-  --color-rose-300: #eeaec2;
-  --color-rose-400: #e488a3;
-  --color-rose-500: #d46a88;
-  --color-rose-600: #b9506e;
+  --color-olive-50: #f5f7ee;
+  --color-olive-100: #eef1e5;
+  --color-olive-200: #dce2c8;
+  --color-olive-300: #c2cb9f;
+  --color-olive-400: #97a06d;
+  --color-olive-500: #6b7a45;
+  --color-olive-600: #566234;
 
   /* Tokens semánticos (los que usan los componentes) */
-  --color-surface: #fffafb; /* fondo de página: blanco cálido rosado */
-  --color-surface-alt: #fbeef3; /* secciones/tarjetas alternas */
-  --color-ink: #4a2b36; /* texto principal: plum profundo, alto contraste */
-  --color-ink-soft: #8a6472; /* texto secundario */
-  --color-primary: #d46a88; /* acento rosa */
-  --color-primary-soft: #e488a3;
-  --color-line: #f0d9e1; /* bordes/divisores sutiles */
+  --color-surface: #fafbf6; /* fondo de página: blanco cálido con toque verde */
+  --color-surface-alt: #eef1e5; /* secciones/tarjetas alternas (oliva muy claro) */
+  --color-ink: #2e3320; /* texto principal: verde muy oscuro, alto contraste */
+  --color-ink-soft: #6d7360; /* texto secundario oliva-gris */
+  --color-primary: #6b7a45; /* acento verde oliva */
+  --color-primary-soft: #97a06d;
+  --color-line: #e0e5d2; /* bordes/divisores sutiles */
 
   /* Tipografía */
   --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
