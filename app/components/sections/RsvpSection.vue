@@ -27,6 +27,7 @@ const respondedCount = computed(() =>
 
 // Mesa asignada (se carga cuando el invitado ya confirmó asistencia).
 const mesa = ref<MesaView | null>(null)
+const mesaEl = ref<HTMLElement>()
 async function loadMesa() {
   try {
     const res = await $fetch<MesaResponse>(`/api/mesa/${props.guest.code}`)
@@ -36,12 +37,16 @@ async function loadMesa() {
   }
 }
 
-// Celebración al confirmar + cargar su mesa.
-watch(success, (ok) => {
-  if (ok && attending.value) {
-    burst()
-    loadMesa()
-  }
+// Celebración al confirmar + cargar su mesa, y bajar solo hasta la mesa
+// después de ~2.5s para que el invitado no pierda de vista su ubicación.
+watch(success, async (ok) => {
+  if (!ok || !attending.value) return
+  burst()
+  await loadMesa()
+  await nextTick()
+  window.setTimeout(() => {
+    mesaEl.value?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }, 1500)
 })
 
 // Si ya había confirmado antes que sí, cargar su mesa al abrir.
@@ -206,7 +211,8 @@ const field =
     </AppReveal>
 
     <!-- Mesa asignada (solo si confirmó asistencia y tiene mesa) -->
-    <AppReveal v-if="mesa" :delay="0.15" class="mt-16 text-center">
+    <div ref="mesaEl" class="scroll-mt-8">
+      <AppReveal v-if="mesa" :delay="0.15" class="mt-16 text-center">
       <p class="mb-2 text-[0.7rem] uppercase tracking-[0.45em] text-primary/70">Tu ubicación</p>
       <h3 class="mb-10 font-display text-2xl text-ink sm:text-3xl">
         Te esperamos en la {{ mesa.nombre }}
@@ -215,6 +221,7 @@ const field =
       <p class="mx-auto mt-10 max-w-xs text-balance text-sm leading-relaxed text-ink-soft/80">
         Este es tu lugar y quienes compartirán la mesa contigo 🌿
       </p>
-    </AppReveal>
+      </AppReveal>
+    </div>
   </section>
 </template>

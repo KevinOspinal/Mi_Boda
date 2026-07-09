@@ -9,8 +9,8 @@ const positions = computed(() =>
     const n = props.mesa.seats.length
     const angle = ((-90 + (360 / n) * i) * Math.PI) / 180
     return {
-      left: `${50 + 44 * Math.cos(angle)}%`,
-      top: `${50 + 44 * Math.sin(angle)}%`,
+      left: `${50 + 39 * Math.cos(angle)}%`,
+      top: `${50 + 39 * Math.sin(angle)}%`,
     }
   }),
 )
@@ -71,7 +71,7 @@ const positions = computed(() =>
 <style scoped>
 .scene {
   position: relative;
-  width: clamp(300px, 92vw, 420px);
+  width: min(100%, 400px);
   aspect-ratio: 1;
   margin: 0 auto;
 }
@@ -126,7 +126,7 @@ const positions = computed(() =>
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 62px;
+  width: 58px;
   gap: 3px;
 }
 .avatar {
@@ -172,10 +172,12 @@ const positions = computed(() =>
   height: 22px;
 }
 .seat__name {
-  font-size: 0.68rem;
+  font-size: 0.62rem;
   line-height: 1.05;
   text-align: center;
   color: var(--color-ink);
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 .seat__name.locked {
   color: color-mix(in srgb, var(--color-ink-soft) 45%, transparent);
