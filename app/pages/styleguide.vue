@@ -14,6 +14,34 @@ const colors = [
 ]
 
 const musicActive = ref(false)
+
+// Datos de ejemplo para el componente de mesa (Fase 4)
+const lock = (nombre: string) => ({ orden: 0, nombre: null, revealed: false, propio: false, siempreVisible: false, _n: nombre })
+const mesaHonor = {
+  id: 1,
+  nombre: 'Mesa de Honor',
+  esHonor: true,
+  capacidad: 10,
+  seats: [
+    { orden: 1, nombre: 'Kevin', revealed: true, propio: false, siempreVisible: true },
+    { orden: 2, nombre: 'Daniela', revealed: true, propio: false, siempreVisible: true },
+    { orden: 3, nombre: 'Pastor', revealed: true, propio: false, siempreVisible: true },
+    { orden: 4, nombre: 'Gloria', revealed: true, propio: true, siempreVisible: false },
+    lock('Leidy'), lock('Jonnathan'), lock('Emily'), lock('Jonny'), lock('Maria'),
+  ],
+}
+const mesa2 = {
+  id: 2,
+  nombre: 'Mesa 2',
+  esHonor: false,
+  capacidad: 10,
+  seats: [
+    { orden: 1, nombre: 'Andres', revealed: true, propio: true, siempreVisible: false },
+    { orden: 2, nombre: 'Claudia', revealed: true, propio: true, siempreVisible: false },
+    { orden: 3, nombre: 'Brayan', revealed: true, propio: true, siempreVisible: false },
+    lock('a'), lock('b'), lock('c'), lock('d'), lock('e'),
+  ],
+}
 </script>
 
 <template>
@@ -72,6 +100,14 @@ const musicActive = ref(false)
             <p class="mt-2 text-sm text-ink-soft/70">Aparece con elegancia al entrar en pantalla.</p>
           </div>
         </AppReveal>
+      </div>
+    </section>
+    <!-- Mesa (Fase 4) -->
+    <section class="mt-16">
+      <h3 class="mb-8 text-xs uppercase tracking-[0.3em] text-ink-soft/60">Mesa — vista del invitado</h3>
+      <div class="space-y-16">
+        <MesaReveal :mesa="mesaHonor" />
+        <MesaReveal :mesa="mesa2" />
       </div>
     </section>
   </main>
