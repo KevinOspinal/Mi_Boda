@@ -22,3 +22,6 @@ logs
 .env
 .env.*
 !.env.example
+
+# Configuración local de herramientas
+.claude
