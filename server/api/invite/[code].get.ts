@@ -12,34 +12,32 @@ export default defineEventHandler(async (event): Promise<InviteData> => {
     throw createError({ statusCode: 400, statusMessage: 'Código requerido' })
   }
 
-  const supabase = serverSupabase()
-  const { data, error } = await supabase
-    .from('guests')
-    .select('id, code, display_name, max_passes, group_label, opened_at')
-    .eq('code', code)
-    .maybeSingle()
-
-  if (error) {
-    throw createError({ statusCode: 500, statusMessage: error.message })
-  }
+  const sql = db()
+  const [data] = await sql`
+    select id, code, display_name, max_passes, group_label, opened_at
+    from public.guests
+    where code = ${code}
+    limit 1
+  `
   if (!data) {
     throw createError({ statusCode: 404, statusMessage: 'Invitación no encontrada' })
   }
 
   // Tracking "visto": solo la primera vez, sin bloquear la respuesta.
   if (!data.opened_at) {
-    await supabase
-      .from('guests')
-      .update({ opened_at: new Date().toISOString() })
-      .eq('id', data.id)
+    await sql`update public.guests set opened_at = now() where id = ${data.id}`
   }
 
   // Respuesta previa (si ya confirmó) para no permitir reenviar.
-  const { data: rsvpRow } = await supabase
-    .from('rsvps')
-    .select('attending, guests_count, message')
-    .eq('guest_id', data.id)
-    .maybeSingle()
+  const [rsvpRow] = await sql`
+    select attending, guests_count, message, reconfirmed
+    from public.rsvps
+    where guest_id = ${data.id}
+    limit 1
+  `
+
+  // Estado de la ventana de reconfirmación (semanas antes de la boda).
+  const reconfirm = await getReconfirmWindow(sql)
 
   return {
     id: data.id,
@@ -47,13 +45,15 @@ export default defineEventHandler(async (event): Promise<InviteData> => {
     displayName: data.display_name,
     maxPasses: data.max_passes,
     groupLabel: data.group_label,
-    openedAt: data.opened_at,
+    openedAt: data.opened_at ? new Date(data.opened_at).toISOString() : null,
     rsvp: rsvpRow
       ? {
           attending: rsvpRow.attending,
           guestsCount: rsvpRow.guests_count,
           message: rsvpRow.message,
+          reconfirmed: rsvpRow.reconfirmed ?? null,
         }
       : null,
+    reconfirm,
   }
 })

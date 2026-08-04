@@ -48,11 +48,30 @@ async function onExperienceStart() {
   await startMusic() // respaldo por si se saltó la intro
 }
 
-// Meta OG por invitado (preview elegante al compartir por WhatsApp).
+// Meta OG (preview elegante al compartir por WhatsApp): tarjeta 1200x630.
+const runtime = useRuntimeConfig()
+const siteUrl = (runtime.public.siteUrl || 'http://localhost:3000').replace(/\/+$/, '')
+const ogImage = `${siteUrl}/og/invitation.jpg`
+const ogDesc = '11 de Octubre de 2026 · Kamaura, El Cerrito, Valle. Abre tu invitación y confirma tu asistencia. 💍'
 useSeoMeta({
   title: () => (guest.value ? `${guest.value.displayName} · ${coupleNames}` : coupleNames),
-  ogTitle: () => `${coupleNames} — Nuestra Boda`,
-  description: 'Nos casamos. Te esperamos para celebrar este día tan especial.',
+  ogTitle: `${coupleNames} — Nos Casamos`,
+  description: ogDesc,
+  ogDescription: ogDesc,
+  ogType: 'website',
+  ogUrl: () => `${siteUrl}/invite/${code.value}`,
+  ogImage,
+  ogImageSecureUrl: ogImage,
+  ogImageType: 'image/jpeg',
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
+  ogImageAlt: 'Kevin & Daniela — 11 de Octubre de 2026',
+  ogSiteName: 'Kevin & Daniela',
+  ogLocale: 'es_CO',
+  twitterCard: 'summary_large_image',
+  twitterTitle: `${coupleNames} — Nos Casamos`,
+  twitterDescription: ogDesc,
+  twitterImage: ogImage,
 })
 </script>
 
@@ -71,6 +90,7 @@ useSeoMeta({
       <!-- Experiencia posterior a la apertura -->
       <template v-else>
         <WelcomeHero :guest="guest" :couple-names="coupleNames" />
+        <ReconfirmSection :guest="guest" />
         <CountdownSection :date="wedding.date" :save-the-date="wedding.hero.saveTheDate" />
         <StorySection :blocks="wedding.story" />
         <GallerySection :images="wedding.gallery" />

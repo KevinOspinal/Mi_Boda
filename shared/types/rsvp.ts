@@ -33,4 +33,6 @@ export interface ExistingRsvp {
   attending: boolean
   guestsCount: number
   message: string | null
+  /** Reconfirmación: null = no reconfirma aún, true = sigue asistiendo, false = canceló. */
+  reconfirmed: boolean | null
 }

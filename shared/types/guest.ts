@@ -15,7 +15,17 @@ export interface Guest {
   openedAt: string | null
 }
 
+/** Estado de la ventana de reconfirmación (semanas antes de la boda). */
+export interface ReconfirmWindow {
+  /** ¿Está abierta la reconfirmación ahora mismo? */
+  open: boolean
+  /** Fecha límite sugerida (ISO) para reconfirmar, o null. */
+  deadline: string | null
+}
+
 /** Datos que devuelve el endpoint de invitación: el invitado + su respuesta previa. */
 export interface InviteData extends Guest {
   rsvp: import('./rsvp').ExistingRsvp | null
+  /** Ventana de reconfirmación (para mostrar el prompt cuando aplique). */
+  reconfirm: ReconfirmWindow
 }

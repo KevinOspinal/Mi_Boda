@@ -21,16 +21,12 @@ export default defineEventHandler(async (event) => {
   }
   const input = body.data
 
-  const supabase = serverSupabase()
+  const sql = db()
 
   // Resolver invitado y validar cupo en el servidor (nunca confiar en el cliente).
-  const { data: guest, error: guestError } = await supabase
-    .from('guests')
-    .select('id, max_passes')
-    .eq('code', input.code)
-    .maybeSingle()
-
-  if (guestError) throw createError({ statusCode: 500, statusMessage: guestError.message })
+  const [guest] = await sql`
+    select id, max_passes from public.guests where code = ${input.code} limit 1
+  `
   if (!guest) throw createError({ statusCode: 404, statusMessage: 'Invitación no encontrada' })
 
   if (input.attending && input.guestsCount > guest.max_passes) {
@@ -40,22 +36,29 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  const now = new Date().toISOString()
-  const { error: upsertError } = await supabase.from('rsvps').upsert(
-    {
-      guest_id: guest.id,
-      attending: input.attending,
-      guests_count: input.attending ? input.guestsCount : 0,
-      attendee_names: input.attendeeNames ?? null,
-      phone: input.phone ?? null,
-      dietary: input.dietary ?? null,
-      message: input.message ?? null,
-      updated_at: now,
-    },
-    { onConflict: 'guest_id' },
-  )
-
-  if (upsertError) throw createError({ statusCode: 500, statusMessage: upsertError.message })
+  // Upsert por invitado (una confirmación por guest_id).
+  await sql`
+    insert into public.rsvps
+      (guest_id, attending, guests_count, attendee_names, phone, dietary, message, updated_at)
+    values (
+      ${guest.id},
+      ${input.attending},
+      ${input.attending ? input.guestsCount : 0},
+      ${input.attendeeNames ?? null},
+      ${input.phone ?? null},
+      ${input.dietary ?? null},
+      ${input.message ?? null},
+      now()
+    )
+    on conflict (guest_id) do update set
+      attending      = excluded.attending,
+      guests_count   = excluded.guests_count,
+      attendee_names = excluded.attendee_names,
+      phone          = excluded.phone,
+      dietary        = excluded.dietary,
+      message        = excluded.message,
+      updated_at     = now()
+  `
 
   return { ok: true }
 })

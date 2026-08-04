@@ -36,10 +36,12 @@ export default defineNuxtConfig({
   },
 
   // Server-only secrets (never exposed to the client). Populated from env:
-  //   NUXT_SUPABASE_URL, NUXT_SUPABASE_SERVICE_KEY
+  //   NUXT_DATABASE_URL, NUXT_ADMIN_PASSWORD, NUXT_ADMIN_SESSION_PASSWORD
   runtimeConfig: {
-    supabaseUrl: '',
-    supabaseServiceKey: '',
+    databaseUrl: '',
+    // Panel de administración (Kevin & Daniela).
+    adminPassword: '', // NUXT_ADMIN_PASSWORD — clave compartida para entrar al panel.
+    adminSessionPassword: '', // NUXT_ADMIN_SESSION_PASSWORD — secreto (>=32 chars) que sella la cookie.
     public: {
       siteUrl: 'http://localhost:3000',
     },
