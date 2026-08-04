@@ -6,7 +6,8 @@ import { timingSafeEqual } from 'node:crypto'
  */
 export async function useAdminSession(event: Parameters<typeof getRequestURL>[0]) {
   const config = useRuntimeConfig()
-  if (!config.adminSessionPassword || config.adminSessionPassword.length < 32) {
+  const sessionPassword = config.adminSessionPassword ? String(config.adminSessionPassword) : ''
+  if (sessionPassword.length < 32) {
     throw createError({
       statusCode: 500,
       statusMessage: 'Panel no configurado (falta NUXT_ADMIN_SESSION_PASSWORD, mínimo 32 caracteres).',
@@ -14,7 +15,7 @@ export async function useAdminSession(event: Parameters<typeof getRequestURL>[0]
   }
   return await useSession<{ authenticated: boolean }>(event, {
     name: 'boda_admin',
-    password: config.adminSessionPassword,
+    password: sessionPassword,
     cookie: { sameSite: 'lax' },
   })
 }
@@ -33,10 +34,12 @@ export async function requireAdmin(event: Parameters<typeof getRequestURL>[0]) {
 /**
  * Compara la contraseña recibida contra la configurada en tiempo constante
  * (evita filtrar la longitud/contenido por diferencias de tiempo).
+ * Se fuerza a string: algunas plataformas pueden inyectar variables de
+ * entorno puramente numéricas (p. ej. "12345678") como tipo number.
  */
 export function passwordMatches(input: string, expected: string): boolean {
-  const a = Buffer.from(input)
-  const b = Buffer.from(expected)
+  const a = Buffer.from(String(input))
+  const b = Buffer.from(String(expected))
   if (a.length !== b.length) return false
   return timingSafeEqual(a, b)
 }
