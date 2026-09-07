@@ -7,7 +7,7 @@ export const wedding: WeddingConfig = {
     monogram: 'K&D',
   },
 
-  date: '2026-10-11T16:00:00-05:00',
+  date: '2026-10-11T15:30:00-05:00',
   timezone: 'America/Bogota',
 
   hero: {
@@ -28,9 +28,6 @@ export const wedding: WeddingConfig = {
     },
   ],
 
-  // Las rutas de /public se sirven desde la raíz (sin "../../public").
-  gallery: ['/gallery/Propuesta1.jpg', '/gallery/Propuesta2.JPG'],
-
   // Ceremonia y recepción en el mismo lugar (coordenadas reales de Kamaura).
   venues: [
     {
@@ -46,17 +43,17 @@ export const wedding: WeddingConfig = {
 
   itinerary: [
     {
-      time: '04:00 PM',
+      time: '03:30 PM',
       title: 'Recepción de Invitados',
       description: 'Te esperamos para compartir juntos este día tan especial.',
     },
     {
-      time: '04:30 PM',
+      time: '04:00 PM',
       title: 'Ceremonia',
       description: 'Celebraremos nuestro pacto matrimonial delante de Dios y de nuestros seres queridos.',
     },
     {
-      time: '05:30 PM',
+      time: '05:00 PM',
       title: 'Sesión de Fotografías',
       description: 'Un momento para compartir y capturar recuerdos inolvidables.',
     },
@@ -71,7 +68,7 @@ export const wedding: WeddingConfig = {
       description: 'Compartiremos un tiempo de alegría, música y momentos inolvidables.',
     },
     {
-      time: '9:00 PM',
+      time: '10:00 PM',
       title: 'Despedida',
       description: 'Gracias por ser parte de este día que recordaremos para siempre.',
     },

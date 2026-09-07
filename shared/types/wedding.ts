@@ -40,7 +40,6 @@ export interface WeddingConfig {
     saveTheDate: string
   }
   story: StoryBlock[]
-  gallery: string[]
   venues: EventVenue[]
   itinerary: ItineraryItem[]
   dressCode: {

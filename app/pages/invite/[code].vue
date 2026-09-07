@@ -93,7 +93,6 @@ useSeoMeta({
         <ReconfirmSection :guest="guest" />
         <CountdownSection :date="wedding.date" :save-the-date="wedding.hero.saveTheDate" />
         <StorySection :blocks="wedding.story" />
-        <GallerySection :images="wedding.gallery" />
         <EventDetailsSection
           :date="wedding.date"
           :timezone="wedding.timezone"
