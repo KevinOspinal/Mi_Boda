@@ -8,7 +8,8 @@ export default defineEventHandler(async (event): Promise<AdminStats> => {
   await requireAdmin(event)
 
   const sql = db()
-  const [row] = await sql`
+  const row = requireRow(
+    await sql`
     select
       (select count(*) from public.guests)::int                                    as invitaciones,
       (select count(*) from public.rsvps where attending)::int                     as confirmados,
@@ -16,7 +17,9 @@ export default defineEventHandler(async (event): Promise<AdminStats> => {
       (select coalesce(sum(guests_count), 0) from public.rsvps where attending)::int as personas,
       (select count(*) from public.guests where opened_at is not null)::int        as vieron,
       (select coalesce(sum(max_passes), 0) from public.guests)::int                as pases_totales
-  `
+  `,
+    'las estadísticas',
+  )
 
   return {
     invitaciones: row.invitaciones,

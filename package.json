@@ -5,13 +5,19 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
+    "dev:local": "nuxt dev --dotenv .env.local",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "typecheck": "nuxt typecheck",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "db:backup": "node scripts/backup.mjs",
+    "db:restore": "node scripts/db.mjs restore",
+    "db:check": "node scripts/db.mjs check",
+    "db:set-url": "node scripts/db.mjs set-url",
+    "db:build-restore": "bash scripts/build-restore.sh"
   },
   "dependencies": {
     "@nuxt/fonts": "^0.14.0",
@@ -31,6 +37,7 @@
   "devDependencies": {
     "@nuxt/eslint": "^1.16.0",
     "@types/howler": "^2.2.13",
+    "@types/node": "^26.5.0",
     "eslint": "^10.6.0",
     "eslint-config-prettier": "^10.1.8",
     "playwright": "^1.61.1",

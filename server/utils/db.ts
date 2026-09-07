@@ -29,3 +29,26 @@ export function db() {
   })
   return sql
 }
+
+/**
+ * Primera fila de una consulta que SIEMPRE debería devolver una (agregados,
+ * `wedding_settings` con su fila única, …).
+ *
+ * postgres.js devuelve un array, así que `const [row] = await sql\`…\`` deja a
+ * `row` como `T | undefined`. Sin esta comprobación, una base a medio migrar
+ * provoca un `TypeError` opaco al leer la primera propiedad; con ella sale un
+ * 500 que dice exactamente qué faltaba.
+ *
+ * Para filas que legítimamente pueden no existir (buscar un invitado por su
+ * código, p. ej.), NO uses esto: comprueba el `undefined` y lanza un 404.
+ */
+export function requireRow<T>(rows: readonly T[], descripcion: string): T {
+  const row = rows[0]
+  if (!row) {
+    throw createError({
+      statusCode: 500,
+      statusMessage: `La base de datos no devolvió ${descripcion}. ¿Faltan migraciones?`,
+    })
+  }
+  return row
+}

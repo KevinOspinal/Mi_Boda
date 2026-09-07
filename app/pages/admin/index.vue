@@ -116,6 +116,17 @@ function fmtDate(iso: string | null) {
           </svg>
           Actualizar
         </button>
+        <a
+          href="/api/admin/backup"
+          download
+          class="inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 text-xs uppercase tracking-[0.15em] text-ink-soft transition-colors hover:border-primary/50 hover:text-primary"
+          title="Descarga un .sql con todos los invitados, confirmaciones y mesas"
+        >
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+            <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          Respaldo
+        </a>
         <button
           class="inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 text-xs uppercase tracking-[0.15em] text-ink-soft transition-colors hover:border-rose-300 hover:text-rose-600"
           @click="logout()"

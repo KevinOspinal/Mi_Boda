@@ -25,3 +25,8 @@ logs
 
 # Configuración local de herramientas
 .claude
+
+# Respaldos de la base (npm run db:backup).
+# Contienen nombres, teléfonos y mensajes de los invitados, y este repositorio
+# es público: no deben subirse. Guárdalos fuera del repo (nube, disco externo).
+backups/
