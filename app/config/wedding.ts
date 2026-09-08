@@ -32,7 +32,7 @@ export const wedding: WeddingConfig = {
   venues: [
     {
       label: 'Ceremonia y Recepción',
-      name: 'Kamaura',
+      name: 'Casa campestre Kamaura',
       address: 'Cl. 10, El Cerrito, Valle del Cauca',
       lat: 3.6871768,
       lng: -76.3111296,

@@ -52,7 +52,7 @@ async function onExperienceStart() {
 const runtime = useRuntimeConfig()
 const siteUrl = (runtime.public.siteUrl || 'http://localhost:3000').replace(/\/+$/, '')
 const ogImage = `${siteUrl}/og/invitation.jpg`
-const ogDesc = '11 de Octubre de 2026 · Kamaura, El Cerrito, Valle. Abre tu invitación y confirma tu asistencia. 💍'
+const ogDesc = '11 de Octubre de 2026 · Casa campestre Kamaura, El Cerrito, Valle. Abre tu invitación y confirma tu asistencia. 💍'
 useSeoMeta({
   title: () => (guest.value ? `${guest.value.displayName} · ${coupleNames}` : coupleNames),
   ogTitle: `${coupleNames} — Nos Casamos`,

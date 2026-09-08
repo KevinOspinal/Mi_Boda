@@ -5,7 +5,7 @@ const DEFAULT_MESSAGE = `✨ *Kevin & Daniela se casan* ✨
 Hola {name}, con el corazón lleno de alegría queremos invitarte a celebrar nuestra boda 💍
 
 🗓️ Domingo 11 de Octubre de 2026
-📍 Kamaura · El Cerrito, Valle
+📍 Casa campestre Kamaura · El Cerrito, Valle
 
 Toca tu invitación personal para ver todos los detalles y confirmar tu asistencia 👇
 {link}

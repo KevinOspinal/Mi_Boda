@@ -9,7 +9,7 @@ const coupleNames = `${couple.groomFirstName} & ${couple.brideFirstName}`
 const runtime = useRuntimeConfig()
 const siteUrl = (runtime.public.siteUrl || 'http://localhost:3000').replace(/\/+$/, '')
 const ogImage = `${siteUrl}/og/invitation.jpg`
-const ogDesc = '11 de Octubre de 2026 · Kamaura, El Cerrito, Valle. Te esperamos para celebrar este día tan especial. 💍'
+const ogDesc = '11 de Octubre de 2026 · Casa campestre Kamaura, El Cerrito, Valle. Te esperamos para celebrar este día tan especial. 💍'
 useSeoMeta({
   title: `${coupleNames} — Nos Casamos`,
   ogTitle: `${coupleNames} — Nos Casamos`,
