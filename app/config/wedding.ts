@@ -7,7 +7,7 @@ export const wedding: WeddingConfig = {
     monogram: 'K&D',
   },
 
-  date: '2026-10-11T15:30:00-05:00',
+  date: '2026-10-11T15:00:00-05:00',
   timezone: 'America/Bogota',
 
   hero: {
@@ -43,12 +43,13 @@ export const wedding: WeddingConfig = {
 
   itinerary: [
     {
-      time: '03:30 PM',
+      time: '03:00 PM',
       title: 'Recepción de Invitados',
-      description: 'Te esperamos para compartir juntos este día tan especial.',
+      description:
+        'Te esperamos para compartir juntos este día tan especial. Valoramos mucho tu puntualidad.',
     },
     {
-      time: '04:00 PM',
+      time: '03:45 PM',
       title: 'Ceremonia',
       description: 'Celebraremos nuestro pacto matrimonial delante de Dios y de nuestros seres queridos.',
     },
@@ -56,6 +57,11 @@ export const wedding: WeddingConfig = {
       time: '05:00 PM',
       title: 'Sesión de Fotografías',
       description: 'Un momento para compartir y capturar recuerdos inolvidables.',
+    },
+    {
+      time: '05:30 PM',
+      title: 'Brindis',
+      description: 'Alzaremos nuestras copas para celebrar juntos el comienzo de esta nueva etapa.',
     },
     {
       time: '06:00 PM',

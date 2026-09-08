@@ -2,7 +2,7 @@ import type { ReconfirmWindow } from '~~/shared/types/guest'
 import type { AdminReconfirm } from '~~/shared/types/admin'
 
 /** Fecha y hora de la boda (Kevin & Daniela). */
-const WEDDING_ISO = '2026-10-11T15:30:00-05:00'
+const WEDDING_ISO = '2026-10-11T15:00:00-05:00'
 /** Medianoche del día de la boda (zona Bogotá, sin horario de verano). */
 const WEDDING_DAY_ISO = '2026-10-11T00:00:00-05:00'
 const DAY_MS = 86_400_000
