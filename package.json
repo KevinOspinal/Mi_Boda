@@ -14,6 +14,7 @@
     "format": "prettier --write .",
     "postinstall": "nuxt prepare",
     "db:backup": "node scripts/backup.mjs",
+    "lista": "node scripts/lista.mjs",
     "db:restore": "node scripts/db.mjs restore",
     "db:check": "node scripts/db.mjs check",
     "db:set-url": "node scripts/db.mjs set-url",
