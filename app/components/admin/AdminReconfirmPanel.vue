@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { weddingDayStart } from '~/config/wedding'
 import type { AdminReconfirm } from '~~/shared/types/admin'
 
 const { data } = await useFetch<AdminReconfirm>('/api/admin/reconfirm')
@@ -45,7 +46,7 @@ async function saveDias() {
 
 // Vista previa en vivo de la fecha de apertura según los días escritos.
 const previewApertura = computed(() => {
-  const base = new Date('2026-10-11T00:00:00-05:00').getTime()
+  const base = new Date(weddingDayStart).getTime()
   const d = new Date(base - (diasApertura.value || 0) * 86_400_000)
   return d.toLocaleDateString('es-CO', { day: 'numeric', month: 'long', year: 'numeric' })
 })

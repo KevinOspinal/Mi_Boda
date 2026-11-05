@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { InviteData } from '~~/shared/types/guest'
-import { wedding } from '~/config/wedding'
+import { wedding, coupleNames } from '~/config/wedding'
 import { useAudio } from '~/composables/useAudio'
 import { useExperienceStore } from '~/stores/experience'
 
@@ -20,7 +20,6 @@ const {
   retryDelay: 500,
 })
 
-const coupleNames = `${wedding.couple.groomFirstName} & ${wedding.couple.brideFirstName}`
 
 // Flujo de la experiencia: sobre → (apertura) → bienvenida/contenido.
 const opened = ref(false)
@@ -51,8 +50,8 @@ async function onExperienceStart() {
 // Meta OG (preview elegante al compartir por WhatsApp): tarjeta 1200x630.
 const runtime = useRuntimeConfig()
 const siteUrl = (runtime.public.siteUrl || 'http://localhost:3000').replace(/\/+$/, '')
-const ogImage = `${siteUrl}/og/invitation.jpg`
-const ogDesc = '11 de Octubre de 2026 · Casa campestre Kamaura, El Cerrito, Valle. Abre tu invitación y confirma tu asistencia. 💍'
+const ogImage = `${siteUrl}${wedding.seo.ogImage}`
+const ogDesc = `${wedding.seo.tagline} Abre tu invitación y confirma tu asistencia. 💍`
 useSeoMeta({
   title: () => (guest.value ? `${guest.value.displayName} · ${coupleNames}` : coupleNames),
   ogTitle: `${coupleNames} — Nos Casamos`,
@@ -65,8 +64,8 @@ useSeoMeta({
   ogImageType: 'image/jpeg',
   ogImageWidth: 1200,
   ogImageHeight: 630,
-  ogImageAlt: 'Kevin & Daniela — 11 de Octubre de 2026',
-  ogSiteName: 'Kevin & Daniela',
+  ogImageAlt: `${coupleNames} — ${wedding.hero.saveTheDate}`,
+  ogSiteName: coupleNames,
   ogLocale: 'es_CO',
   twitterCard: 'summary_large_image',
   twitterTitle: `${coupleNames} — Nos Casamos`,

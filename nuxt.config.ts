@@ -1,4 +1,5 @@
 import tailwindcss from '@tailwindcss/vite'
+import { wedding, coupleNames } from './app/config/wedding'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -39,7 +40,7 @@ export default defineNuxtConfig({
   //   NUXT_DATABASE_URL, NUXT_ADMIN_PASSWORD, NUXT_ADMIN_SESSION_PASSWORD
   runtimeConfig: {
     databaseUrl: '',
-    // Panel de administración (Kevin & Daniela).
+    // Panel de administración del evento.
     adminPassword: '', // NUXT_ADMIN_PASSWORD — clave compartida para entrar al panel.
     adminSessionPassword: '', // NUXT_ADMIN_SESSION_PASSWORD — secreto (>=32 chars) que sella la cookie.
     public: {
@@ -50,14 +51,14 @@ export default defineNuxtConfig({
   app: {
     head: {
       htmlAttrs: { lang: 'es' },
-      title: 'Kevin & Daniela — Nuestra Boda',
+      title: `${coupleNames} — Nuestra Boda`,
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1, viewport-fit=cover' },
         { name: 'theme-color', content: '#10192f' },
         {
           name: 'description',
-          content: 'Nos casamos. Te esperamos para celebrar este día tan especial.',
+          content: `${wedding.seo.tagline} Te esperamos para celebrar este día tan especial.`,
         },
       ],
     },

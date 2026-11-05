@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import { wedding, coupleNames } from '~/config/wedding'
 definePageMeta({ layout: 'default' })
 useHead({
-  title: 'Panel · Kevin & Daniela',
+  title: `Panel · ${coupleNames}`,
   meta: [{ name: 'robots', content: 'noindex, nofollow' }],
 })
 
@@ -34,7 +35,9 @@ function onSubmit() {
       <header class="text-center">
         <p class="mb-4 text-[0.68rem] uppercase tracking-[0.45em] text-primary/70">Administración</p>
         <h1 class="font-display text-4xl font-light leading-tight text-ink sm:text-[2.75rem]">
-          Kevin <span class="text-primary italic">&amp;</span> Daniela
+          {{ wedding.couple.groomFirstName }}
+          <span class="text-primary italic">&amp;</span>
+          {{ wedding.couple.brideFirstName }}
         </h1>
         <OrnamentDivider class="mx-auto mt-5" />
         <p class="mt-5 text-sm leading-relaxed text-ink-soft">

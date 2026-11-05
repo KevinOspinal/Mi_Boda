@@ -1,4 +1,5 @@
 import type { MesaResponse, SeatView } from '~~/shared/types/mesa'
+import { wedding } from '~~/app/config/wedding'
 
 /**
  * GET /api/mesa/:code
@@ -48,6 +49,12 @@ export default defineEventHandler(async (event): Promise<MesaResponse> => {
     order by orden
   `
 
+  // Quiénes van resaltados como "los novios" (configurable por evento).
+  const honorNames = wedding.couple.honorSeatNames ?? [
+    wedding.couple.groomFirstName,
+    wedding.couple.brideFirstName,
+  ]
+
   // Todos los asientos se muestran (sin candados) para cualquier invitado.
   const seatViews: SeatView[] = seats.map((s) => {
     const propio = s.guest_id === guest.id
@@ -57,7 +64,7 @@ export default defineEventHandler(async (event): Promise<MesaResponse> => {
       revealed: true,
       propio,
       siempreVisible: s.siempre_visible,
-      esNovio: s.siempre_visible && (s.nombre === 'Kevin' || s.nombre === 'Daniela'),
+      esNovio: s.siempre_visible && honorNames.includes(s.nombre),
     }
   })
 

@@ -1,15 +1,14 @@
 <script setup lang="ts">
-import { wedding } from '~/config/wedding'
+import { wedding, coupleNames } from '~/config/wedding'
 
 // Landing genérica / demo. La experiencia real y personalizada vive en /invite/:code.
 const { couple } = wedding
-const coupleNames = `${couple.groomFirstName} & ${couple.brideFirstName}`
 
 // Meta OG: misma tarjeta 1200x630 al compartir la raíz.
 const runtime = useRuntimeConfig()
 const siteUrl = (runtime.public.siteUrl || 'http://localhost:3000').replace(/\/+$/, '')
-const ogImage = `${siteUrl}/og/invitation.jpg`
-const ogDesc = '11 de Octubre de 2026 · Casa campestre Kamaura, El Cerrito, Valle. Te esperamos para celebrar este día tan especial. 💍'
+const ogImage = `${siteUrl}${wedding.seo.ogImage}`
+const ogDesc = `${wedding.seo.tagline} Te esperamos para celebrar este día tan especial. 💍`
 useSeoMeta({
   title: `${coupleNames} — Nos Casamos`,
   ogTitle: `${coupleNames} — Nos Casamos`,
@@ -22,8 +21,8 @@ useSeoMeta({
   ogImageType: 'image/jpeg',
   ogImageWidth: 1200,
   ogImageHeight: 630,
-  ogImageAlt: 'Kevin & Daniela — 11 de Octubre de 2026',
-  ogSiteName: 'Kevin & Daniela',
+  ogImageAlt: `${coupleNames} — ${wedding.hero.saveTheDate}`,
+  ogSiteName: coupleNames,
   ogLocale: 'es_CO',
   twitterCard: 'summary_large_image',
   twitterImage: ogImage,
@@ -59,7 +58,7 @@ useSeoMeta({
     </p>
 
     <NuxtLink
-      to="/invite/kevin"
+      :to="`/invite/${wedding.seo.demoCode}`"
       class="mt-10 inline-flex items-center gap-2 rounded-full border border-primary/60 px-8 py-3 text-sm uppercase tracking-widest text-primary transition hover:bg-primary hover:text-white"
     >
       Ver invitación demo

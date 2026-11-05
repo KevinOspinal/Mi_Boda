@@ -7,7 +7,7 @@ export interface SeatView {
   /** Pertenece a la invitación del que mira. */
   propio: boolean
   siempreVisible: boolean
-  /** Es uno de los novios (Kevin o Daniela) → se le pone corona. */
+  /** Es uno de los novios (ver couple.honorSeatNames) → se le pone corona. */
   esNovio?: boolean
 }
 

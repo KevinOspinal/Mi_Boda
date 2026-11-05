@@ -1,9 +1,10 @@
 <script setup lang="ts">
+import { wedding, coupleNames } from '~/config/wedding'
 import type { AdminStats, AdminGuestsResponse, InviteStatus, ReconfirmStatus } from '~~/shared/types/admin'
 
 definePageMeta({ middleware: 'admin', layout: 'default' })
 useHead({
-  title: 'Panel · Kevin & Daniela',
+  title: `Panel · ${coupleNames}`,
   meta: [{ name: 'robots', content: 'noindex, nofollow' }],
 })
 
@@ -103,7 +104,9 @@ function fmtDate(iso: string | null) {
       <div>
         <p class="mb-2 text-[0.68rem] uppercase tracking-[0.4em] text-primary/70">Panel de novios</p>
         <h1 class="font-display text-4xl font-light leading-none text-ink sm:text-5xl">
-          Kevin <span class="italic text-primary">&amp;</span> Daniela
+          {{ wedding.couple.groomFirstName }}
+          <span class="italic text-primary">&amp;</span>
+          {{ wedding.couple.brideFirstName }}
         </h1>
       </div>
       <div class="flex items-center gap-2">

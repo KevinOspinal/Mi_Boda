@@ -1,27 +1,10 @@
 import type { AdminGuest, AdminGuestsResponse, InviteStatus, ReconfirmStatus } from '~~/shared/types/admin'
+import { wedding } from '~~/app/config/wedding'
 
-const DEFAULT_MESSAGE = `✨ *Kevin & Daniela se casan* ✨
-
-Hola {name}, con el corazón lleno de alegría queremos invitarte a celebrar nuestra boda 💍
-
-🗓️ Domingo 11 de Octubre de 2026
-📍 Casa campestre Kamaura · El Cerrito, Valle
-
-Toca tu invitación personal para ver todos los detalles y confirmar tu asistencia 👇
-{link}
-
-Con cariño,
-Kevin & Daniela 🤍`
-
-const RECONFIRM_MESSAGE = `Hola {name} 💍 ¡Ya casi es el gran día!
-
-Como cada lugar en la boda es muy especial para nosotros, te pedimos *reconfirmar* tu asistencia para el *Domingo 11 de Octubre*.
-
-Reconfírmala en un toque aquí 👇
-{link}
-
-¡Gracias de corazón!
-Kevin & Daniela 🤍`
+// Plantillas de WhatsApp: viven en app/config/wedding.ts junto al resto del
+// contenido del evento, para no tener los nombres escritos en dos sitios.
+const DEFAULT_MESSAGE = wedding.messages.invite
+const RECONFIRM_MESSAGE = wedding.messages.reconfirm
 
 /**
  * GET /api/admin/guests

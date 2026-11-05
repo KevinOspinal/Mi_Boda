@@ -1,6 +1,7 @@
 <script setup lang="ts">
+import { wedding, coupleNames } from '~/config/wedding'
 // Página de validación del sistema de diseño (uso interno durante el desarrollo).
-useHead({ title: 'Styleguide · Kevin & Daniela' })
+useHead({ title: `Styleguide · ${coupleNames}` })
 
 const colors = [
   { name: 'white', value: '#ffffff' },
@@ -23,8 +24,8 @@ const mesaHonor = {
   esHonor: true,
   capacidad: 10,
   seats: [
-    { orden: 1, nombre: 'Kevin', revealed: true, propio: false, siempreVisible: true },
-    { orden: 2, nombre: 'Daniela', revealed: true, propio: false, siempreVisible: true },
+    { orden: 1, nombre: wedding.couple.groomFirstName, revealed: true, propio: false, siempreVisible: true },
+    { orden: 2, nombre: wedding.couple.brideFirstName, revealed: true, propio: false, siempreVisible: true },
     { orden: 3, nombre: 'Pastor', revealed: true, propio: false, siempreVisible: true },
     { orden: 4, nombre: 'Gloria', revealed: true, propio: true, siempreVisible: false },
     lock('Leidy'), lock('Jonnathan'), lock('Emily'), lock('Jonny'), lock('Maria'),

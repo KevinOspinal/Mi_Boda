@@ -1,10 +1,11 @@
 import type { ReconfirmWindow } from '~~/shared/types/guest'
 import type { AdminReconfirm } from '~~/shared/types/admin'
+import { wedding, weddingDayStart } from '~~/app/config/wedding'
 
-/** Fecha y hora de la boda (Kevin & Daniela). */
-const WEDDING_ISO = '2026-10-11T15:00:00-05:00'
-/** Medianoche del día de la boda (zona Bogotá, sin horario de verano). */
-const WEDDING_DAY_ISO = '2026-10-11T00:00:00-05:00'
+/** Fecha y hora del evento, tal como está en app/config/wedding.ts. */
+const WEDDING_ISO = wedding.date
+/** Medianoche del día del evento, en la misma zona horaria. */
+const WEDDING_DAY_ISO = weddingDayStart
 const DAY_MS = 86_400_000
 
 /** Devuelve el instante de "N días antes" de la boda, a la medianoche de Bogotá. */

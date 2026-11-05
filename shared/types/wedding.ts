@@ -5,6 +5,11 @@ export interface Couple {
   groomFirstName: string
   /** Monograma para el sobre/sello, ej. "K&D". */
   monogram: string
+  /**
+   * Nombres tal como aparecen en los asientos de la mesa de honor.
+   * Sirve para resaltarlos con el estilo de "novios" en el plano de mesas.
+   */
+  honorSeatNames?: string[]
 }
 
 export interface StoryBlock {
@@ -30,11 +35,40 @@ export interface EventVenue {
   mapsUrl?: string
 }
 
+/** Textos para las tarjetas de WhatsApp y los metadatos al compartir. */
+export interface WeddingSeo {
+  /**
+   * Una línea con fecha y lugar, ej.
+   * "11 de Octubre de 2026 · Casa campestre Kamaura, El Cerrito, Valle".
+   * Se usa en la descripción OG de la portada y de cada invitación.
+   */
+  tagline: string
+  /** Imagen 1200x630 para la tarjeta al compartir, relativa a /public. */
+  ogImage: string
+  /** Código de invitación que abre la demo desde la portada. */
+  demoCode: string
+}
+
+/**
+ * Plantillas de los mensajes de WhatsApp. Admiten dos marcadores:
+ *   {name} → nombre del invitado      {link} → su enlace personal
+ */
+export interface WeddingMessages {
+  /** Primera invitación. La base de datos puede sobrescribirla desde el panel. */
+  invite: string
+  /** Recordatorio para reconfirmar cuando se acerca la fecha. */
+  reconfirm: string
+}
+
 export interface WeddingConfig {
   couple: Couple
   /** Fecha/hora del evento en ISO 8601 con zona, para el countdown. */
   date: string
   timezone: string
+  /** Fecha escrita para humanos, ej. "Domingo 11 de Octubre de 2026". */
+  dateLabel: string
+  seo: WeddingSeo
+  messages: WeddingMessages
   hero: {
     title: string // "Nuestra Boda"
     saveTheDate: string
