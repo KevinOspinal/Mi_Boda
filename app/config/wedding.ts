@@ -4,112 +4,111 @@ import type { WeddingConfig } from '../../shared/types/wedding'
 
 export const wedding: WeddingConfig = {
   couple: {
-    brideFirstName: 'Daniela',
-    groomFirstName: 'Kevin',
-    monogram: 'K&D',
+    brideFirstName: 'Yisell',
+    groomFirstName: 'Carlos',
+    monogram: 'C&Y',
     // Nombres que van resaltados como "los novios" en el plano de mesas.
-    honorSeatNames: ['Kevin', 'Daniela'],
+    honorSeatNames: ['Carlos', 'Yisell'],
   },
 
-  date: '2026-10-11T15:00:00-05:00',
+  date: '2026-12-19T18:00:00-05:00',
   timezone: 'America/Bogota',
-  dateLabel: 'Domingo 11 de Octubre de 2026',
+  dateLabel: 'Sábado 19 de Diciembre de 2026',
 
   // Lo que se ve al compartir el enlace por WhatsApp o redes.
   seo: {
-    tagline: '11 de Octubre de 2026 · Casa campestre Kamaura, El Cerrito, Valle.',
+    tagline: '19 de Diciembre de 2026 · Pradera, Valle del Cauca.',
     ogImage: '/og/invitation.jpg',
-    demoCode: 'kevin',
+    demoCode: 'carlos',
   },
 
   // Mensajes de WhatsApp. {name} = nombre del invitado · {link} = su enlace.
   messages: {
-    invite: `✨ *Kevin & Daniela se casan* ✨
+    invite: `✨ *Carlos & Yisell se casan* ✨
 
 Hola {name}, con el corazón lleno de alegría queremos invitarte a celebrar nuestra boda 💍
 
-🗓️ Domingo 11 de Octubre de 2026
-📍 Casa campestre Kamaura · El Cerrito, Valle
+🗓️ Sábado 19 de Diciembre de 2026
+📍 Pradera, Valle del Cauca
 
 Toca tu invitación personal para ver todos los detalles y confirmar tu asistencia 👇
 {link}
 
 Con cariño,
-Kevin & Daniela 🤍`,
+Carlos & Yisell 🤍`,
 
     reconfirm: `Hola {name} 💍 ¡Ya casi es el gran día!
 
-Como cada lugar en la boda es muy especial para nosotros, te pedimos *reconfirmar* tu asistencia para el *Domingo 11 de Octubre*.
+Como cada lugar en la boda es muy especial para nosotros, te pedimos *reconfirmar* tu asistencia para el *Sábado 19 de Diciembre*.
 
 Reconfírmala en un toque aquí 👇
 {link}
 
 ¡Gracias de corazón!
-Kevin & Daniela 🤍`,
+Carlos & Yisell 🤍`,
   },
 
   hero: {
     title: '¡Nos Casamos!',
-    saveTheDate: '11 de Octubre de 2026',
+    saveTheDate: '19 de Diciembre de 2026',
   },
 
+  // Sin fotos: los bloques se muestran centrados a una sola columna.
+  // Si más adelante llega una foto, basta con añadir `image: '/gallery/…'`.
   story: [
     {
       title: 'Nuestra Historia',
-      text: 'Dios cruzó nuestros caminos en el momento perfecto. Lo que comenzó con una amistad fue creciendo poco a poco hasta convertirse en una relación basada en el amor, el respeto y la fe. Cada experiencia vivida fortaleció nuestra decisión de caminar juntos.',
-      image: '/gallery/Propuesta1.jpg',
+      text: 'Nuestros caminos se cruzaron para escribir juntos una historia que ninguno de los dos imaginaba. Lo que comenzó como un encuentro se fue convirtiendo en compañía, en confianza y en un amor que creció con el tiempo y con la fe. Hoy, de la mano de Dios, decidimos unir nuestras vidas y prometernos amor, respeto y fidelidad para todos los días que vengan.',
     },
     {
-      title: 'Nuestro "Sí"',
-      text: 'Después de muchas oraciones, aprendizajes y sueños compartidos, entendimos que Dios nos estaba guiando hacia un mismo propósito. Hoy, con inmensa alegría, queremos celebrar junto a nuestra familia y amigos el inicio de esta nueva etapa que Él ha preparado para nosotros.',
-      // Pendiente: foto real de la propuesta de matrimonio (Kevin la agregará pronto).
+      title: 'Un Sí Bendecido por Dios',
+      text: 'Al mirar atrás entendemos que Dios estuvo en cada paso: en los encuentros, en la espera y en cada decisión que nos trajo hasta aquí. Él llegó a cambiarlo todo, y por eso este sí no lo decimos solos. Queremos celebrarlo rodeados de las personas que amamos, dando gracias por lo que Él ya hizo y por todo lo que apenas comienza.',
     },
   ],
 
-  // Ceremonia y recepción en el mismo lugar (coordenadas reales de Kamaura).
   venues: [
     {
       label: 'Ceremonia y Recepción',
-      name: 'Casa campestre Kamaura',
-      address: 'Cl. 10, El Cerrito, Valle del Cauca',
-      lat: 3.6871768,
-      lng: -76.3111296,
-      mapsUrl:
-        'https://www.google.com/maps/dir/?api=1&destination=Kamaura%2C+Cl.+10%2C+El+Cerrito%2C+Valle+del+Cauca',
+      // TODO: falta el nombre del lugar (Kevin lo confirma).
+      name: 'Pradera, Valle del Cauca',
+      address: 'Calle 5, Pradera, Valle del Cauca',
+      lat: 3.4153131,
+      lng: -76.2324868,
+      mapsUrl: 'https://www.google.com/maps/dir/?api=1&destination=3.4153131%2C-76.2324868',
     },
   ],
 
   itinerary: [
     {
-      time: '03:00 PM',
+      time: '04:30 PM',
       title: 'Recepción de Invitados',
       description:
         'Te esperamos para compartir juntos este día tan especial. Valoramos mucho tu puntualidad.',
     },
     {
-      time: '03:45 PM',
+      time: '06:00 PM',
       title: 'Ceremonia',
       description: 'Celebraremos nuestro pacto matrimonial delante de Dios y de nuestros seres queridos.',
     },
     {
-      time: '05:00 PM',
+      time: '07:00 PM',
       title: 'Sesión de Fotografías',
       description: 'Un momento para compartir y capturar recuerdos inolvidables.',
     },
     {
-      time: '05:30 PM',
+      time: '08:00 PM',
       title: 'Brindis',
       description: 'Alzaremos nuestras copas para celebrar juntos el comienzo de esta nueva etapa.',
     },
     {
-      time: '06:00 PM',
-      title: 'Cena',
-      description: 'Disfrutaremos de una deliciosa cena en compañía de todos nuestros invitados.',
-    },
-    {
-      time: '07:00 PM',
+      time: '08:30 PM',
       title: 'Celebración',
       description: 'Compartiremos un tiempo de alegría, música y momentos inolvidables.',
+    },
+    {
+      time: '09:00 PM',
+      title: 'Cena',
+      description: 'Disfrutaremos de una deliciosa cena en compañía de todos nuestros invitados.',
     },
     {
       time: '10:00 PM',
@@ -124,12 +123,12 @@ Kevin & Daniela 🤍`,
     description: 'Por favor, evita los colores blanco y sus derivados.',
   },
 
-  // Música de fondo: coloca tu archivo en public/music/ y pon aquí su ruta.
-  // Arranca en el primer toque (abrir el sobre). Comenta este bloque para desactivarla.
-  music: {
-    src: '/music/Mi Vida Sin Ti.mp3',
-    title: 'Nuestra canción',
-  },
+  // Música de fondo: coloca el archivo en public/music/ y pon aquí su ruta.
+  // Desactivada hasta que los novios elijan su canción.
+  // music: {
+  //   src: '/music/cancion.mp3',
+  //   title: 'Nuestra canción',
+  // },
 
   gifts: {
     title: 'Lluvia de sobres',
@@ -146,7 +145,7 @@ Kevin & Daniela 🤍`,
 
 /**
  * Derivados que usan varias pantallas. Se calculan una vez aquí para que
- * "Kevin & Daniela" no quede escrito a mano en media docena de archivos.
+ * "Carlos & Yisell" no quede escrito a mano en media docena de archivos.
  */
 export const coupleNames = `${wedding.couple.groomFirstName} & ${wedding.couple.brideFirstName}`
 
