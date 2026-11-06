@@ -17,7 +17,7 @@ export const wedding: WeddingConfig = {
 
   // Lo que se ve al compartir el enlace por WhatsApp o redes.
   seo: {
-    tagline: '19 de Diciembre de 2026 · Pradera, Valle del Cauca.',
+    tagline: '19 de Diciembre de 2026 · Casa Finca Doña Glads, Pradera, Valle.',
     ogImage: '/og/invitation.jpg',
     demoCode: 'carlos',
   },
@@ -29,7 +29,7 @@ export const wedding: WeddingConfig = {
 Hola {name}, con el corazón lleno de alegría queremos invitarte a celebrar nuestra boda 💍
 
 🗓️ Sábado 19 de Diciembre de 2026
-📍 Pradera, Valle del Cauca
+📍 Casa Finca Doña Glads · Pradera, Valle
 
 Toca tu invitación personal para ver todos los detalles y confirmar tu asistencia 👇
 {link}
@@ -69,11 +69,12 @@ Carlos & Yisell 🤍`,
   venues: [
     {
       label: 'Ceremonia y Recepción',
-      // TODO: falta el nombre del lugar (Kevin lo confirma).
-      name: 'Pradera, Valle del Cauca',
+      name: 'Casa Finca Doña Glads',
       address: 'Calle 5, Pradera, Valle del Cauca',
       lat: 3.4153131,
       lng: -76.2324868,
+      // Por coordenadas a propósito: una finca rural no siempre aparece en
+      // Google Maps por su nombre, y las coordenadas sí llevan al punto exacto.
       mapsUrl: 'https://www.google.com/maps/dir/?api=1&destination=3.4153131%2C-76.2324868',
     },
   ],
