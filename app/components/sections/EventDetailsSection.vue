@@ -9,7 +9,7 @@ const time = computed(() => formatTime(props.date, props.timezone))
 </script>
 
 <template>
-  <section class="bg-surface-alt/40 px-6 py-24">
+  <section class="bg-surface-alt px-6 py-24">
     <AppReveal>
       <SectionHeading kicker="El evento" title="Cuándo y dónde" />
     </AppReveal>

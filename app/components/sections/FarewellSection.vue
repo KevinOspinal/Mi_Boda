@@ -6,7 +6,8 @@ defineProps<{ farewell: WeddingConfig['farewell']; monogram: string }>()
 
 const { prefersReduced } = useReducedMotion()
 
-const COLORS = ['#dca9a7', '#c9a961', '#eed2d0', '#8f3f44']
+// Pétalos claros: sobre el fondo oscuro, el vino no se vería.
+const COLORS = ['#e8c6c2', '#e2cb90', '#f3ded9', '#c99a94']
 const petals = Array.from({ length: 16 }, () => ({
   left: Math.random() * 100,
   size: 10 + Math.random() * 12,
@@ -17,7 +18,9 @@ const petals = Array.from({ length: 16 }, () => ({
 </script>
 
 <template>
-  <section class="relative flex min-h-dvh flex-col items-center justify-center overflow-hidden px-6 text-center">
+  <section
+    class="relative flex min-h-dvh flex-col items-center justify-center overflow-hidden bg-night px-6 text-center"
+  >
     <!-- Pétalos cayendo (ambiente) -->
     <div v-if="!prefersReduced" class="pointer-events-none absolute inset-0" aria-hidden="true">
       <span
@@ -37,26 +40,35 @@ const petals = Array.from({ length: 16 }, () => ({
 
     <div
       aria-hidden="true"
-      class="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_45%_at_50%_45%,rgba(143,63,68,0.10),transparent_70%)]"
+      class="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_45%,rgba(201,169,97,0.12),transparent_68%)]"
     />
 
+    <!-- Mismo filete que la portada: la invitación abre y cierra enmarcada. -->
+    <div aria-hidden="true" class="night-frame">
+      <span /><span /><span /><span />
+    </div>
+
     <BotanicalSprig
+      tone="night"
       aria-hidden="true"
-      class="pointer-events-none absolute left-2 top-8 w-16 -rotate-[20deg] opacity-60 sm:left-10 sm:w-24"
+      class="pointer-events-none absolute left-2 top-16 w-16 -rotate-[20deg] opacity-50 sm:left-12 sm:w-24"
     />
     <BotanicalSprig
+      tone="night"
       aria-hidden="true"
-      class="pointer-events-none absolute right-2 top-8 w-16 rotate-[20deg] opacity-60 sm:right-10 sm:w-24"
+      class="pointer-events-none absolute right-2 top-16 w-16 rotate-[20deg] opacity-50 sm:right-12 sm:w-24"
     />
 
     <AppReveal class="relative">
-      <p class="font-display text-5xl font-light text-primary sm:text-6xl">{{ monogram }}</p>
-      <OrnamentDivider class="mx-auto my-8" />
-      <h2 class="font-display text-4xl font-light text-ink sm:text-5xl">{{ farewell.title }}</h2>
-      <p class="mx-auto mt-6 max-w-md text-balance leading-relaxed text-ink-soft">
+      <p class="font-display text-5xl font-light text-gold-300 sm:text-6xl">{{ monogram }}</p>
+      <OrnamentDivider class="mx-auto my-8" tone="night" />
+      <h2 class="font-display text-4xl font-light text-on-night sm:text-5xl">
+        {{ farewell.title }}
+      </h2>
+      <p class="mx-auto mt-6 max-w-md text-balance leading-relaxed text-on-night-soft">
         {{ farewell.message }}
       </p>
-      <p class="mt-10 text-xs uppercase tracking-[0.4em] text-ink-soft/50">
+      <p class="mt-10 text-xs uppercase tracking-[0.4em] text-on-night-soft/60">
         Con amor, {{ monogram }}
       </p>
     </AppReveal>
@@ -64,6 +76,47 @@ const petals = Array.from({ length: 16 }, () => ({
 </template>
 
 <style scoped>
+.night-frame {
+  position: absolute;
+  inset: 1.15rem;
+  border: 1px solid rgb(226 203 144 / 0.26);
+  pointer-events: none;
+}
+
+.night-frame span {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  rotate: 45deg;
+  background: var(--color-gold-400);
+}
+
+.night-frame span:nth-child(1) {
+  top: -3.5px;
+  left: -3.5px;
+}
+
+.night-frame span:nth-child(2) {
+  top: -3.5px;
+  right: -3.5px;
+}
+
+.night-frame span:nth-child(3) {
+  bottom: -3.5px;
+  left: -3.5px;
+}
+
+.night-frame span:nth-child(4) {
+  bottom: -3.5px;
+  right: -3.5px;
+}
+
+@media (min-width: 640px) {
+  .night-frame {
+    inset: 1.85rem;
+  }
+}
+
 .petal {
   position: absolute;
   top: 0;

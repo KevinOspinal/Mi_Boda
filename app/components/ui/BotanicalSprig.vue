@@ -1,9 +1,17 @@
 <script setup lang="ts">
 // Ramita botánica en línea fina para acentos decorativos (esquinas, hero, cierre).
+// `tone="night"` la aclara, para las bandas de fondo oscuro.
+withDefaults(defineProps<{ tone?: 'default' | 'night' }>(), { tone: 'default' })
 </script>
 
 <template>
-  <svg class="sprig" viewBox="0 0 100 220" fill="none" aria-hidden="true">
+  <svg
+    class="sprig"
+    :class="{ 'is-night': tone === 'night' }"
+    viewBox="0 0 100 220"
+    fill="none"
+    aria-hidden="true"
+  >
     <path
       d="M52 216 C47 178 55 152 50 120 C46 92 55 62 50 24"
       stroke="currentColor"
@@ -30,5 +38,8 @@
   display: block;
   height: auto;
   color: var(--color-primary);
+}
+.sprig.is-night {
+  color: var(--color-on-night-soft);
 }
 </style>

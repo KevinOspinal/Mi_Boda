@@ -13,11 +13,11 @@ withDefaults(
   <div :class="align === 'center' ? 'text-center' : 'text-left'">
     <p
       v-if="kicker"
-      class="mb-4 text-[0.7rem] uppercase tracking-[0.45em] text-primary/70"
+      class="mb-5 text-[0.7rem] uppercase tracking-[0.45em] text-primary/80"
     >
       {{ kicker }}
     </p>
-    <h2 class="font-display text-4xl font-light leading-tight text-ink sm:text-5xl">
+    <h2 class="font-display text-[2.6rem] font-light leading-[1.1] text-ink sm:text-6xl">
       {{ title }}
     </h2>
     <OrnamentDivider class="mt-6" :class="align === 'center' ? 'mx-auto' : ''" />

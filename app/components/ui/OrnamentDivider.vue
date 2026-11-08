@@ -1,10 +1,13 @@
 <script setup lang="ts">
-// Divisor decorativo: dos tallos con hojas y un rombo central. Reemplaza la línea simple.
+// Divisor decorativo: dos tallos con hojas y un rombo central.
+// `tone="night"` lo pasa a oro, para las bandas de fondo oscuro.
+withDefaults(defineProps<{ tone?: 'default' | 'night' }>(), { tone: 'default' })
 </script>
 
 <template>
   <svg
     class="ornament"
+    :class="{ 'is-night': tone === 'night' }"
     viewBox="0 0 200 28"
     fill="none"
     aria-hidden="true"
@@ -22,9 +25,9 @@
       <circle cx="24" cy="14" r="1.5" opacity="0.5" />
       <circle cx="176" cy="14" r="1.5" opacity="0.5" />
     </g>
-    <g>
+    <g class="ornament__gem">
       <!-- rombo central, en oro -->
-      <path d="M100 4l6.5 10-6.5 10-6.5-10z" fill="var(--color-gold-400)" />
+      <path d="M100 4l6.5 10-6.5 10-6.5-10z" />
     </g>
   </svg>
 </template>
@@ -35,5 +38,14 @@
   width: clamp(120px, 42vw, 180px);
   height: auto;
   color: var(--color-primary);
+}
+.ornament__gem {
+  fill: var(--color-gold-400);
+}
+.ornament.is-night {
+  color: var(--color-gold-300);
+}
+.ornament.is-night .ornament__gem {
+  fill: var(--color-gold-300);
 }
 </style>

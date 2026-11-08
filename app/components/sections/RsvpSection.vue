@@ -79,7 +79,7 @@ const field =
 </script>
 
 <template>
-  <section id="rsvp" class="bg-surface-alt/40 px-6 py-24">
+  <section id="rsvp" class="px-6 py-24">
     <AppReveal>
       <SectionHeading kicker="Confirma tu asistencia" title="¿Nos acompañarás?" />
     </AppReveal>

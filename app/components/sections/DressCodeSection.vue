@@ -5,7 +5,7 @@ defineProps<{ dressCode: WeddingConfig['dressCode'] }>()
 </script>
 
 <template>
-  <section class="bg-surface-alt/40 px-6 py-24">
+  <section class="bg-surface-alt px-6 py-24">
     <AppReveal>
       <SectionHeading :title="dressCode.title" kicker="Etiqueta" />
     </AppReveal>
