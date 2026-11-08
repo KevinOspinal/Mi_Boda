@@ -3,6 +3,7 @@ import { wedding, coupleNames } from '~/config/wedding'
 
 // Landing genérica / demo. La experiencia real y personalizada vive en /invite/:code.
 const { couple } = wedding
+const venue = wedding.venues[0]
 
 // Meta OG: misma tarjeta 1200x630 al compartir la raíz.
 const runtime = useRuntimeConfig()
@@ -52,20 +53,16 @@ useSeoMeta({
 
     <div class="mt-8 h-px w-24 bg-primary/50" />
 
-    <p class="mt-8 max-w-md text-balance text-ink-soft/80">
-      Estás a punto de vivir una invitación como ninguna otra. Cada invitado tiene su propio
-      enlace personal.
+    <p v-if="venue" class="mt-8 font-display text-2xl font-light text-ink sm:text-3xl">
+      {{ venue.name }}
+    </p>
+    <p v-if="venue" class="mt-2 text-sm text-ink-soft/70">
+      {{ venue.address }}
     </p>
 
-    <NuxtLink
-      :to="`/invite/${wedding.seo.demoCode}`"
-      class="mt-10 inline-flex items-center gap-2 rounded-full border border-primary/60 px-8 py-3 text-sm uppercase tracking-widest text-primary transition hover:bg-primary hover:text-white"
-    >
-      Ver invitación demo
-    </NuxtLink>
-
-    <p class="absolute bottom-6 text-xs uppercase tracking-[0.3em] text-ink-soft/40">
-      Fase 0 · Cimientos
+    <p class="mt-10 max-w-md text-balance text-sm leading-relaxed text-ink-soft/80">
+      Cada invitado recibe su enlace personal por WhatsApp, con los detalles del día y el
+      espacio para confirmar su asistencia. Si aún no te ha llegado, escríbenos.
     </p>
   </main>
 </template>

@@ -19,7 +19,6 @@ export const wedding: WeddingConfig = {
   seo: {
     tagline: '19 de Diciembre de 2026 · Casa Finca Doña Glads, Pradera, Valle.',
     ogImage: '/og/invitation.jpg',
-    demoCode: 'carlos',
   },
 
   // Mensajes de WhatsApp. {name} = nombre del invitado · {link} = su enlace.

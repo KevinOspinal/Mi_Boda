@@ -45,8 +45,6 @@ export interface WeddingSeo {
   tagline: string
   /** Imagen 1200x630 para la tarjeta al compartir, relativa a /public. */
   ogImage: string
-  /** Código de invitación que abre la demo desde la portada. */
-  demoCode: string
 }
 
 /**
