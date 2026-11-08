@@ -6,6 +6,7 @@
     "build": "nuxt build",
     "dev": "nuxt dev",
     "dev:local": "nuxt dev --dotenv .env.local",
+    "dev:tia": "nuxt dev --dotenv .env.tia --port 3010",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "typecheck": "nuxt typecheck",
