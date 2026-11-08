@@ -14,10 +14,59 @@ const flap = ref<HTMLElement>()
 const card = ref<HTMLElement>()
 const cardContent = ref<HTMLElement>()
 const seal = ref<HTMLElement>()
+const sealShadow = ref<HTMLElement>()
+const shine = ref<HTMLElement>()
 const hint = ref<HTMLElement>()
 
 const opened = ref(false)
-let ctx: ReturnType<typeof $gsap.context> | undefined
+/**
+ * Qué cara de la solapa se ve. No se puede dejar en manos de
+ * `backface-visibility`: el `filter` del sobre aplana el 3D y entonces el giro
+ * del padre no se compone con el de la cara, así que el navegador nunca da por
+ * volteada la cara interior. Se decide aquí, leyendo el ángulo real.
+ */
+const flipped = ref(false)
+let idleCtx: ReturnType<typeof $gsap.context> | undefined
+let openCtx: ReturnType<typeof $gsap.context> | undefined
+
+const reducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+/**
+ * Reposo: el sobre respira, un brillo recorre el papel de vez en cuando y la
+ * pista late. Sin esto el sobre parece una imagen fija y mucha gente no cae en
+ * que hay que tocarlo.
+ */
+onMounted(() => {
+  if (reducedMotion()) return
+
+  idleCtx = $gsap.context(() => {
+    $gsap.to(envelope.value!, {
+      y: -5,
+      duration: 3.2,
+      ease: 'sine.inOut',
+      repeat: -1,
+      yoyo: true,
+    })
+
+    $gsap.set(shine.value!, { skewX: -12, xPercent: -180 })
+    $gsap.to(shine.value!, {
+      xPercent: 320,
+      duration: 1.7,
+      ease: 'sine.inOut',
+      repeat: -1,
+      repeatDelay: 4.5,
+      delay: 2,
+    })
+
+    $gsap.to(hint.value!, {
+      opacity: 0.45,
+      duration: 1.9,
+      ease: 'sine.inOut',
+      repeat: -1,
+      yoyo: true,
+    })
+  }, root.value)
+})
 
 function open() {
   if (opened.value) return
@@ -25,35 +74,66 @@ function open() {
   store.markInteracted()
   store.setPhase('opening')
 
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  if (reduce) {
+  if (reducedMotion()) {
     emit('opened')
     return
   }
 
-  ctx = $gsap.context(() => {
+  // El reposo se detiene aquí: si sigue vivo, pelea con la apertura por las
+  // mismas propiedades. GSAP arranca desde donde haya quedado cada elemento.
+  idleCtx?.revert()
+  idleCtx = undefined
+
+  openCtx = $gsap.context(() => {
     const tl = $gsap.timeline({
       defaults: { ease: EASE.elegant },
       onComplete: () => emit('opened'),
     })
 
-    // 1) El sello se rompe: se levanta y se desvanece.
-    tl.to(seal.value!, { y: -6, scale: 1.08, duration: 0.3 })
-      .to(seal.value!, { y: -26, scale: 0.5, rotate: 14, opacity: 0, duration: 0.55 })
-      // 2) La solapa superior gira hacia atrás en 3D.
-      .to(flap.value!, { rotateX: -172, duration: 1.05 }, '<0.05')
+    tl
+      // 1) La cera cede bajo el pulgar y se parte de golpe.
+      .to(seal.value!, { scale: 0.93, duration: 0.14, ease: 'power2.out' })
+      .to(seal.value!, { scale: 1.13, rotate: -6, duration: 0.2, ease: 'back.out(3.5)' })
+      // 2) El trozo de sello cae fuera de cuadro y su sombra se va con él.
+      .to(seal.value!, { y: -34, rotate: 24, scale: 0.4, opacity: 0, duration: 0.6 })
+      .to(sealShadow.value!, { opacity: 0, duration: 0.5 }, '<')
+      // 3) El sobre se inclina para dejar salir la carta y la solapa se pliega.
+      .to(envelope.value!, { rotateX: 6, y: -6, duration: 0.95 }, '<0.05')
+      .to(
+        flap.value!,
+        {
+          rotateX: -168,
+          duration: 1.1,
+          // Al cruzar los 90° la solapa está de canto (altura cero), así que
+          // el cambio de cara no se nota: no hace falta fundido.
+          onUpdate: () => {
+            flipped.value = Math.abs(Number($gsap.getProperty(flap.value!, 'rotateX'))) > 90
+          },
+        },
+        '<',
+      )
       .set(flap.value!, { zIndex: 0 }, '<0.55')
-      // 3) La carta emerge deslizándose hacia arriba y su contenido aparece.
-      .to(card.value!, { yPercent: -68, scale: 1.03, duration: 1.15 }, '<0.2')
-      .to(cardContent.value!, { opacity: 1, duration: 0.6 }, '<0.35')
+      // 4) La carta sale tirada hacia arriba, con un balanceo que luego asienta.
+      .to(card.value!, { yPercent: -70, scale: 1.04, rotate: -0.9, duration: 1.2 }, '<0.3')
+      .to(
+        card.value!,
+        { boxShadow: '0 26px 42px -18px rgba(60, 66, 40, 0.5)', duration: 1 },
+        '<',
+      )
+      .to(card.value!, { rotate: 0, duration: 0.55 }, '-=0.4')
+      .to(cardContent.value!, { opacity: 1, duration: 0.65 }, '<0.05')
       .to(hint.value!, { opacity: 0, duration: 0.3 }, '<')
-      .to(envelope.value!, { y: -10, duration: 0.9 }, '<0.15')
-      // 4) La escena se funde para dar paso a la bienvenida.
-      .to(root.value!, { opacity: 0, duration: 0.7, ease: 'power2.inOut' }, '+=0.45')
-  })
+      // 5) El sobre, ya vacío, se asienta.
+      .to(envelope.value!, { rotateX: 2, y: 6, duration: 0.95 }, '<')
+      // 6) Fundido hacia la bienvenida, con una pausa para leer la carta.
+      .to(root.value!, { opacity: 0, duration: 0.75, ease: 'power2.inOut' }, '+=0.8')
+  }, root.value)
 }
 
-onBeforeUnmount(() => ctx?.revert())
+onBeforeUnmount(() => {
+  idleCtx?.revert()
+  openCtx?.revert()
+})
 </script>
 
 <template>
@@ -91,13 +171,23 @@ onBeforeUnmount(() => ctx?.revert())
           <span class="recipient__name font-display">{{ recipient }}</span>
         </div>
 
-        <!-- Solapa superior (gira al abrir) -->
-        <div ref="flap" class="layer flap-top" />
+        <!-- Solapa superior: dos caras, para que al plegarse se vea el forro
+             en vez de desaparecer al pasar de los 90°. -->
+        <div ref="flap" class="layer flap-top">
+          <div class="flap-face flap-face--out" :class="{ 'is-hidden': flipped }" />
+          <div class="flap-face flap-face--in" :class="{ 'is-hidden': !flipped }" />
+        </div>
 
         <!-- Textura de papel + iluminación -->
         <div class="layer grain" />
         <div class="layer vignette" />
-        <div class="center-shadow" />
+
+        <!-- Brillo que recorre el papel en reposo -->
+        <div class="layer shine-mask">
+          <div ref="shine" class="shine" />
+        </div>
+
+        <div ref="sealShadow" class="center-shadow" />
 
         <!-- Sello de cera -->
         <div ref="seal" class="seal">
@@ -115,13 +205,32 @@ onBeforeUnmount(() => ctx?.revert())
 <style scoped>
 .scene {
   perspective: 1500px;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
+/* Solo donde hay puntero de verdad: en móvil el :hover se queda pegado. */
+@media (hover: hover) {
+  .scene:hover {
+    transform: translateY(-6px);
+  }
+  .scene:hover .envelope {
+    filter: drop-shadow(0 34px 52px rgba(60, 66, 40, 0.34));
+  }
+}
+.scene:active {
+  transform: translateY(-2px) scale(0.99);
+}
+
 .envelope {
   position: relative;
   width: clamp(280px, 84vw, 380px);
   aspect-ratio: 7 / 5;
+  /* El `filter` aplana el 3D de los hijos (lo exige la especificación CSS) y
+     aquí conviene: con 3D real la solapa giraría POR DETRÁS del sobre y no se
+     vería nada, porque la cámara mira el sobre de frente. Aplanado, la solapa
+     se pliega hacia arriba, que es justo como se ve un sobre abierto. */
   transform-style: preserve-3d;
-  filter: drop-shadow(0 26px 40px rgba(60,66,40, 0.28));
+  filter: drop-shadow(0 26px 40px rgba(60, 66, 40, 0.28));
+  transition: filter 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .layer {
   position: absolute;
@@ -238,16 +347,30 @@ onBeforeUnmount(() => ctx?.revert())
   color: var(--color-ink);
 }
 
-/* Solapa superior (se abre) */
+/* Solapa superior (se abre). El contenedor gira; dentro van las dos caras. */
 .flap-top {
   z-index: 4;
   transform-origin: 50% 0%;
-  transform: rotateX(0deg);
-  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+.flap-face {
+  position: absolute;
+  inset: 0;
   clip-path: polygon(0 0, 100% 0, 50% 52%);
-  background: linear-gradient(180deg, #f3f1e3 0%, #e9e7d4 70%, #dddbc4 100%);
   border-radius: 9px 9px 0 0;
-  filter: drop-shadow(0 4px 5px rgba(60,66,40, 0.22));
+}
+.flap-face.is-hidden {
+  opacity: 0;
+}
+/* Cara exterior: la que se ve con el sobre cerrado. */
+.flap-face--out {
+  background: linear-gradient(180deg, #f3f1e3 0%, #e9e7d4 70%, #dddbc4 100%);
+  filter: drop-shadow(0 4px 5px rgba(60, 66, 40, 0.22));
+}
+/* Forro interior: aparece al pasar de los 90°. Más oscuro junto al pliegue,
+   como el papel que queda a la sombra. */
+.flap-face--in {
+  background: linear-gradient(180deg, #d5d1b6 0%, #e3dfcb 55%, #edeada 100%);
 }
 
 /* Textura de papel (grano fino) */
@@ -268,7 +391,32 @@ onBeforeUnmount(() => ctx?.revert())
   border-radius: 9px;
   background:
     radial-gradient(80% 55% at 50% 8%, rgba(255, 255, 255, 0.45), transparent 60%),
-    radial-gradient(120% 90% at 50% 55%, transparent 55%, rgba(60,66,40, 0.12) 100%);
+    radial-gradient(120% 90% at 50% 55%, transparent 55%, rgba(60, 66, 40, 0.12) 100%);
+}
+
+/* Brillo viajero del reposo (recortado al contorno del sobre) */
+.shine-mask {
+  z-index: 5;
+  overflow: hidden;
+  border-radius: 9px;
+  pointer-events: none;
+}
+.shine {
+  position: absolute;
+  top: -25%;
+  bottom: -25%;
+  left: 0;
+  width: 38%;
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    transparent 100%
+  );
+  /* Aparcado fuera del recorte. Hace falta en CSS y no solo en GSAP: antes de
+     hidratar, y con las animaciones reducidas, nadie mueve este elemento y se
+     quedaría una franja blanca fija sobre el papel. */
+  transform: translateX(-180%) skewX(-12deg);
 }
 
 /* Sombra bajo el sello (asienta la cera en el pliegue) */
@@ -281,7 +429,7 @@ onBeforeUnmount(() => ctx?.revert())
   z-index: 5;
   transform: translate(-50%, -50%);
   border-radius: 9999px;
-  background: radial-gradient(closest-side, rgba(60,66,40, 0.28), transparent 72%);
+  background: radial-gradient(closest-side, rgba(60, 66, 40, 0.28), transparent 72%);
   pointer-events: none;
 }
 
@@ -292,5 +440,17 @@ onBeforeUnmount(() => ctx?.revert())
   top: 52%;
   transform: translate(-50%, -50%);
   z-index: 6;
+}
+
+/* Sin animación para quien la ha desactivado en su sistema */
+@media (prefers-reduced-motion: reduce) {
+  .scene,
+  .envelope {
+    transition: none;
+  }
+  .scene:hover,
+  .scene:active {
+    transform: none;
+  }
 }
 </style>
