@@ -5,13 +5,15 @@ useHead({ title: `Styleguide · ${coupleNames}` })
 
 const colors = [
   { name: 'white', value: '#ffffff' },
-  { name: 'surface', value: '#fafbf6' },
-  { name: 'surface-alt', value: '#eef1e5' },
-  { name: 'primary', value: '#6b7a45' },
-  { name: 'primary-soft', value: '#97a06d' },
-  { name: 'ink', value: '#2e3320' },
-  { name: 'ink-soft', value: '#6d7360' },
-  { name: 'line', value: '#e0e5d2' },
+  { name: 'surface', value: '#fdf9f6' },
+  { name: 'surface-alt', value: '#f8eeea' },
+  { name: 'primary', value: '#8f3f44' },
+  { name: 'primary-soft', value: '#bb7472' },
+  { name: 'ink', value: '#32211f' },
+  { name: 'ink-soft', value: '#7b6360' },
+  { name: 'line', value: '#eedfda' },
+  { name: 'gold-400', value: '#c9a961' },
+  { name: 'paper-200', value: '#f2e9dd' },
 ]
 
 const musicActive = ref(false)

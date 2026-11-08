@@ -1,31 +1,45 @@
 @import 'tailwindcss';
 
 /* ==========================================================================
-   Design tokens — Kevin & Daniela
-   Paleta: BLANCO Y VERDE OLIVA. Natural, elegante, editorial y premium.
+   Design tokens — Carlos & Yisell
+   Paleta: VINO TINTO, MARFIL Y ORO CHAMPÁN. Cálida y de noche, para una boda
+   de diciembre a las seis de la tarde en el campo.
    Tokens SEMÁNTICOS (surface/ink/primary…) para que un cambio de paleta se
    haga en un solo lugar sin tocar componentes.
    En Tailwind v4 generan utilidades: bg-surface, text-ink, text-primary, etc.
    ========================================================================== */
 @theme {
-  /* Escala oliva cruda (por si se necesita afinar) */
   --color-white: #ffffff;
-  --color-olive-50: #f5f7ee;
-  --color-olive-100: #eef1e5;
-  --color-olive-200: #dce2c8;
-  --color-olive-300: #c2cb9f;
-  --color-olive-400: #97a06d;
-  --color-olive-500: #6b7a45;
-  --color-olive-600: #566234;
+
+  /* Escala vino (el acento principal) */
+  --color-wine-50: #fdf6f5;
+  --color-wine-100: #f8e9e8;
+  --color-wine-200: #eed2d0;
+  --color-wine-300: #dca9a7;
+  --color-wine-400: #bb7472;
+  --color-wine-500: #8f3f44;
+  --color-wine-600: #733036;
+
+  /* Oro champán — realces puntuales: sello, corona de la mesa de honor */
+  --color-gold-300: #e2cb90;
+  --color-gold-400: #c9a961;
+  --color-gold-500: #8a6a1f; /* el oro legible: se usa en texto e iconos */
+
+  /* Papel — tonos del sobre y de la carta */
+  --color-paper-50: #fdfaf6;
+  --color-paper-100: #f9f3eb;
+  --color-paper-200: #f2e9dd;
+  --color-paper-300: #e8dbcb;
+  --color-paper-400: #dbc9b5;
 
   /* Tokens semánticos (los que usan los componentes) */
-  --color-surface: #fafbf6; /* fondo de página: blanco cálido con toque verde */
-  --color-surface-alt: #eef1e5; /* secciones/tarjetas alternas (oliva muy claro) */
-  --color-ink: #2e3320; /* texto principal: verde muy oscuro, alto contraste */
-  --color-ink-soft: #6d7360; /* texto secundario oliva-gris */
-  --color-primary: #6b7a45; /* acento verde oliva */
-  --color-primary-soft: #97a06d;
-  --color-line: #e0e5d2; /* bordes/divisores sutiles */
+  --color-surface: #fdf9f6; /* fondo de página: marfil cálido */
+  --color-surface-alt: #f8eeea; /* secciones/tarjetas alternas */
+  --color-ink: #32211f; /* texto principal: marrón casi negro */
+  --color-ink-soft: #7b6360; /* texto secundario topo cálido */
+  --color-primary: #8f3f44; /* acento vino */
+  --color-primary-soft: #bb7472;
+  --color-line: #eedfda; /* bordes/divisores sutiles */
 
   /* Tipografía */
   --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
@@ -39,6 +53,15 @@
 
 :root {
   color-scheme: light;
+
+  /* Canales sueltos, para los rgb(… / alfa) de los estilos locales. Un color
+     completo no sirve ahí: hace falta variar la opacidad sobre el mismo tono. */
+  --rgb-shadow: 60 38 34; /* sombra cálida sobre marfil */
+  --rgb-shadow-deep: 42 24 22;
+  --rgb-highlight: 253 246 240; /* luz sobre el papel */
+  --rgb-primary: 143 63 68; /* vino */
+  --rgb-wax-deep: 62 20 26; /* fondo de los relieves del sello */
+  --rgb-gold: 138 106 31;
 }
 
 html {

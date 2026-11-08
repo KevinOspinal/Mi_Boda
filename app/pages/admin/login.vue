@@ -26,7 +26,7 @@ function onSubmit() {
     />
 
     <section
-      class="relative w-full max-w-md rounded-[1.75rem] border border-line bg-white/80 px-8 py-12 shadow-[0_30px_80px_-40px_rgba(46,51,32,0.35)] backdrop-blur-sm sm:px-11"
+      class="relative w-full max-w-md rounded-[1.75rem] border border-line bg-white/80 px-8 py-12 shadow-[0_30px_80px_-40px_rgba(42,24,22,0.35)] backdrop-blur-sm sm:px-11"
     >
       <!-- Sprigs decorativos en esquinas -->
       <BotanicalSprig class="pointer-events-none absolute -left-3 -top-6 w-12 rotate-[18deg] opacity-70" />

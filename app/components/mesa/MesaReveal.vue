@@ -89,19 +89,19 @@ const positions = computed(() =>
   align-items: center;
   justify-content: center;
   border-radius: 9999px;
-  background: radial-gradient(circle at 50% 35%, #ffffff, #eef1e5);
-  box-shadow: 0 10px 30px -12px rgba(60, 66, 40, 0.4);
+  background: radial-gradient(circle at 50% 35%, var(--color-white), var(--color-surface-alt));
+  box-shadow: 0 10px 30px -12px rgb(var(--rgb-shadow) / 0.4);
   border: 1px solid var(--color-line);
 }
 .table.honor {
-  background: radial-gradient(circle at 50% 35%, #fffdf3, #f2ecd2);
-  border: 1.5px solid #c2a24e;
-  box-shadow: 0 12px 34px -12px rgba(160, 130, 50, 0.45);
+  background: radial-gradient(circle at 50% 35%, #fffcf4, #f7ead0);
+  border: 1.5px solid var(--color-gold-400);
+  box-shadow: 0 12px 34px -12px rgb(var(--rgb-gold) / 0.45);
 }
 .crown {
   width: 22px;
   height: 22px;
-  color: #c2a24e;
+  color: var(--color-gold-500);
   margin-bottom: 2px;
 }
 .table__name {
@@ -139,12 +139,12 @@ const positions = computed(() =>
   border: 2px solid var(--color-primary);
   background: var(--color-surface);
   color: var(--color-primary);
-  box-shadow: 0 3px 8px -3px rgba(60, 66, 40, 0.35);
+  box-shadow: 0 3px 8px -3px rgb(var(--rgb-shadow) / 0.35);
 }
 /* Novios: anillo dorado + corona */
 .avatar.novio {
-  border-color: #c2a24e;
-  color: #a9852f;
+  border-color: var(--color-gold-400);
+  color: var(--color-gold-500);
 }
 .crown-badge {
   position: absolute;
@@ -153,13 +153,13 @@ const positions = computed(() =>
   transform: translateX(-50%);
   width: 17px;
   height: 17px;
-  color: #c2a24e;
-  filter: drop-shadow(0 1px 1px rgba(120, 90, 20, 0.35));
+  color: var(--color-gold-500);
+  filter: drop-shadow(0 1px 1px rgb(var(--rgb-gold) / 0.4));
 }
 .avatar.honor {
-  border-color: #c2a24e;
-  color: #a9852f;
-  background: #fffdf3;
+  border-color: var(--color-gold-400);
+  color: var(--color-gold-500);
+  background: #fffcf4;
 }
 .avatar.locked {
   border-color: var(--color-line);

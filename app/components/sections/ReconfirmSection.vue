@@ -37,7 +37,7 @@ async function respond(coming: boolean) {
   <section v-if="show" id="reconfirmar" class="scroll-mt-4 px-6 pt-16">
     <AppReveal class="mx-auto max-w-md">
       <div
-        class="relative overflow-hidden rounded-3xl border border-primary/25 bg-gradient-to-br from-white to-olive-50 p-8 text-center shadow-[0_24px_70px_-45px_rgba(46,51,32,0.55)] sm:p-10"
+        class="relative overflow-hidden rounded-3xl border border-primary/25 bg-gradient-to-br from-white to-wine-50 p-8 text-center shadow-[0_24px_70px_-45px_rgba(42,24,22,0.5)] sm:p-10"
       >
         <BotanicalSprig class="pointer-events-none absolute -right-3 -top-2 w-16 rotate-12 opacity-40" />
         <BotanicalSprig class="pointer-events-none absolute -left-3 -top-2 w-16 -rotate-12 opacity-40" />

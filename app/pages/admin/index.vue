@@ -145,14 +145,14 @@ function fmtDate(iso: string | null) {
     <!-- ══ Banda de resumen ══ -->
     <section class="mt-8 grid gap-4 lg:grid-cols-[1.4fr_1fr]">
       <!-- Progreso de confirmaciones -->
-      <div class="relative overflow-hidden rounded-3xl border border-line bg-gradient-to-br from-white to-olive-50 p-7">
+      <div class="relative overflow-hidden rounded-3xl border border-line bg-gradient-to-br from-white to-wine-50 p-7">
         <BotanicalSprig class="pointer-events-none absolute -right-4 -top-3 w-20 rotate-12 opacity-40" />
         <p class="text-[0.7rem] uppercase tracking-[0.3em] text-ink-soft">Confirmaciones</p>
         <div class="mt-2 flex items-baseline gap-3">
           <span class="font-display text-6xl font-light leading-none text-ink">{{ stats?.confirmados ?? 0 }}</span>
           <span class="text-ink-soft">de {{ stats?.invitaciones ?? 0 }} invitaciones</span>
         </div>
-        <div class="mt-5 h-2.5 w-full overflow-hidden rounded-full bg-olive-100">
+        <div class="mt-5 h-2.5 w-full overflow-hidden rounded-full bg-wine-100">
           <div
             class="h-full rounded-full bg-primary transition-[width] duration-700"
             :style="{ width: confirmPct + '%' }"
@@ -238,11 +238,11 @@ function fmtDate(iso: string | null) {
         <li
           v-for="g in filtered"
           :key="g.id"
-          class="overflow-hidden rounded-2xl border border-line bg-white transition-shadow hover:shadow-[0_18px_50px_-38px_rgba(46,51,32,0.5)]"
+          class="overflow-hidden rounded-2xl border border-line bg-white transition-shadow hover:shadow-[0_18px_50px_-38px_rgba(42,24,22,0.5)]"
         >
           <!-- Fila principal -->
           <div class="flex flex-wrap items-center gap-4 p-4 sm:flex-nowrap">
-            <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-olive-100 font-display text-lg text-primary">
+            <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-wine-100 font-display text-lg text-primary">
               {{ initials(g.displayName) }}
             </div>
 
@@ -279,7 +279,7 @@ function fmtDate(iso: string | null) {
             <!-- Acciones -->
             <div class="flex shrink-0 items-center gap-1">
               <button
-                class="relative rounded-full p-2.5 text-ink-soft transition-colors hover:bg-olive-50 hover:text-primary"
+                class="relative rounded-full p-2.5 text-ink-soft transition-colors hover:bg-wine-50 hover:text-primary"
                 title="Copiar enlace de invitación"
                 @click="copy(g.inviteUrl, g.id + ':link')"
               >
@@ -294,7 +294,7 @@ function fmtDate(iso: string | null) {
                 :href="g.whatsappUrl"
                 target="_blank"
                 rel="noopener"
-                class="rounded-full p-2.5 text-ink-soft transition-colors hover:bg-olive-50 hover:text-primary"
+                class="rounded-full p-2.5 text-ink-soft transition-colors hover:bg-wine-50 hover:text-primary"
                 title="Enviar por WhatsApp"
               >
                 <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
@@ -336,7 +336,7 @@ function fmtDate(iso: string | null) {
             leave-from-class="opacity-100 max-h-[32rem]"
             leave-to-class="opacity-0 max-h-0"
           >
-            <div v-if="expanded.has(g.id)" class="overflow-hidden border-t border-line bg-olive-50/40">
+            <div v-if="expanded.has(g.id)" class="overflow-hidden border-t border-line bg-wine-50/40">
               <dl class="grid gap-x-8 gap-y-4 p-5 sm:grid-cols-2">
                 <div>
                   <dt class="text-[0.65rem] uppercase tracking-[0.2em] text-ink-soft">Enlace personal</dt>

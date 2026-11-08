@@ -25,7 +25,7 @@ defineProps<{ monogram: string }>()
   position: absolute;
   inset: 12% 8% -6% 8%;
   border-radius: 9999px;
-  background: rgba(60,66,40, 0.4);
+  background: rgb(var(--rgb-shadow) / 0.42);
   filter: blur(7px);
   opacity: 0.55;
 }
@@ -39,12 +39,12 @@ defineProps<{ monogram: string }>()
   height: 100%;
   border-radius: 9999px;
   background:
-    radial-gradient(65% 60% at 34% 28%, #a3b072 0%, #6b7a45 38%, #566234 70%, #3f4a24 100%);
+    radial-gradient(65% 60% at 34% 28%, #c07d7a 0%, #8f3f44 38%, #733036 70%, #4e1e25 100%);
   box-shadow:
-    inset 0 3px 5px rgba(242,246,228, 0.55),
-    inset 0 -6px 10px rgba(46,54,26, 0.6),
-    inset 4px 0 8px rgba(46,54,26, 0.25),
-    inset -4px 0 8px rgba(46,54,26, 0.25);
+    inset 0 3px 5px rgb(var(--rgb-highlight) / 0.42),
+    inset 0 -6px 10px rgb(var(--rgb-wax-deep) / 0.6),
+    inset 4px 0 8px rgb(var(--rgb-wax-deep) / 0.25),
+    inset -4px 0 8px rgb(var(--rgb-wax-deep) / 0.25);
   clip-path: polygon(
     50% 1%, 61% 3%, 68% 0%, 77% 6%, 84% 3%, 89% 12%, 97% 16%, 95% 27%,
     100% 36%, 96% 46%, 99% 57%, 93% 66%, 96% 77%, 87% 82%, 84% 92%,
@@ -60,10 +60,10 @@ defineProps<{ monogram: string }>()
   inset: 13%;
   border-radius: 9999px;
   box-shadow:
-    inset 0 1px 1px rgba(242,246,228, 0.4),
-    inset 0 -2px 3px rgba(46,54,26, 0.55),
-    0 1px 1px rgba(242,246,228, 0.25);
-  border: 1px solid rgba(46,54,26, 0.3);
+    inset 0 1px 1px rgb(var(--rgb-highlight) / 0.3),
+    inset 0 -2px 3px rgb(var(--rgb-wax-deep) / 0.55),
+    0 1px 1px rgb(var(--rgb-highlight) / 0.2);
+  border: 1px solid rgb(var(--rgb-wax-deep) / 0.3);
 }
 
 /* Monograma grabado (debossed) */
@@ -73,10 +73,11 @@ defineProps<{ monogram: string }>()
   font-size: clamp(1.05rem, 4vw, 1.45rem);
   font-weight: 500;
   letter-spacing: 0.01em;
-  color: #3c4622;
+  /* Monograma grabado en oro, como un cuño sobre la cera. */
+  color: var(--color-gold-300);
   text-shadow:
-    0 -1px 0 rgba(46,54,26, 0.55),
-    0 1px 1px rgba(242,246,228, 0.5);
+    0 -1px 0 rgb(var(--rgb-wax-deep) / 0.7),
+    0 1px 1px rgb(255 255 255 / 0.18);
 }
 
 /* Brillo especular */
@@ -87,7 +88,7 @@ defineProps<{ monogram: string }>()
   width: 42%;
   height: 34%;
   border-radius: 9999px;
-  background: radial-gradient(closest-side, rgba(255, 255, 255, 0.55), transparent 70%);
+  background: radial-gradient(closest-side, rgba(255, 255, 255, 0.45), transparent 70%);
   mix-blend-mode: screen;
   pointer-events: none;
 }

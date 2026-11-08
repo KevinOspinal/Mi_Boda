@@ -27,7 +27,7 @@ const time = computed(() => formatTime(props.date, props.timezone))
     >
       <AppReveal v-for="(v, i) in venues" :key="i" :delay="0.05 + i * 0.08">
         <div
-          class="h-full rounded-xl border border-line bg-surface p-8 text-center shadow-[0_10px_30px_-18px_rgba(60,66,40,0.35)] transition duration-300 hover:-translate-y-1 hover:border-primary/40"
+          class="h-full rounded-xl border border-line bg-surface p-8 text-center shadow-[0_10px_30px_-18px_rgba(60,38,34,0.35)] transition duration-300 hover:-translate-y-1 hover:border-primary/40"
         >
           <p class="text-xs uppercase tracking-[0.3em] text-primary">{{ v.label }}</p>
           <h3 class="mt-3 font-display text-2xl text-ink">{{ v.name }}</h3>

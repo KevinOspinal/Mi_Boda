@@ -55,7 +55,7 @@ export default defineNuxtConfig({
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1, viewport-fit=cover' },
-        { name: 'theme-color', content: '#10192f' },
+        { name: 'theme-color', content: '#fdf9f6' },
         {
           name: 'description',
           content: `${wedding.seo.tagline} Te esperamos para celebrar este día tan especial.`,

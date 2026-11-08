@@ -28,7 +28,7 @@ function skip() {
     <!-- Halo cálido de fondo -->
     <div
       aria-hidden="true"
-      class="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_40%,rgba(107,122,69,0.12),transparent_70%)]"
+      class="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_40%,rgba(143,63,68,0.10),transparent_70%)]"
     />
 
     <Transition name="fade" mode="out-in">

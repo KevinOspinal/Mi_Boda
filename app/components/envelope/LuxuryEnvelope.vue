@@ -117,7 +117,7 @@ function open() {
       .to(card.value!, { yPercent: -70, scale: 1.04, rotate: -0.9, duration: 1.2 }, '<0.3')
       .to(
         card.value!,
-        { boxShadow: '0 26px 42px -18px rgba(60, 66, 40, 0.5)', duration: 1 },
+        { boxShadow: '0 26px 42px -18px rgba(60, 38, 34, 0.5)', duration: 1 },
         '<',
       )
       .to(card.value!, { rotate: 0, duration: 0.55 }, '-=0.4')
@@ -213,7 +213,7 @@ onBeforeUnmount(() => {
     transform: translateY(-6px);
   }
   .scene:hover .envelope {
-    filter: drop-shadow(0 34px 52px rgba(60, 66, 40, 0.34));
+    filter: drop-shadow(0 34px 52px rgb(var(--rgb-shadow) / 0.34));
   }
 }
 .scene:active {
@@ -229,7 +229,7 @@ onBeforeUnmount(() => {
      vería nada, porque la cámara mira el sobre de frente. Aplanado, la solapa
      se pliega hacia arriba, que es justo como se ve un sobre abierto. */
   transform-style: preserve-3d;
-  filter: drop-shadow(0 26px 40px rgba(60, 66, 40, 0.28));
+  filter: drop-shadow(0 26px 40px rgb(var(--rgb-shadow) / 0.28));
   transition: filter 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .layer {
@@ -240,7 +240,12 @@ onBeforeUnmount(() => {
 /* Cuerpo trasero (papel) */
 .back {
   border-radius: 9px;
-  background: linear-gradient(155deg, #f6f4ea 0%, #ecead8 60%, #e0dec7 100%);
+  background: linear-gradient(
+    155deg,
+    var(--color-paper-100) 0%,
+    var(--color-paper-200) 60%,
+    var(--color-paper-300) 100%
+  );
 }
 
 /* Carta interior */
@@ -256,8 +261,8 @@ onBeforeUnmount(() => {
   justify-content: center;
   padding: 12%;
   border-radius: 4px;
-  background: linear-gradient(180deg, #ffffff 0%, #fbfaf1 100%);
-  box-shadow: 0 8px 18px -10px rgba(60, 66, 40, 0.35);
+  background: linear-gradient(180deg, var(--color-white) 0%, var(--color-paper-50) 100%);
+  box-shadow: 0 8px 18px -10px rgb(var(--rgb-shadow) / 0.35);
   transform-origin: bottom center;
 }
 /* Marco interior delicado */
@@ -308,15 +313,15 @@ onBeforeUnmount(() => {
 }
 .flap-left {
   clip-path: polygon(0 0, 0 100%, 50% 52%);
-  background: linear-gradient(90deg, #f6f4ea 0%, #eae8d5 100%);
+  background: linear-gradient(90deg, var(--color-paper-100) 0%, var(--color-paper-200) 100%);
 }
 .flap-right {
   clip-path: polygon(100% 0, 100% 100%, 50% 52%);
-  background: linear-gradient(270deg, #e2e0c9 0%, #e9e7d3 100%);
+  background: linear-gradient(270deg, var(--color-paper-400) 0%, var(--color-paper-300) 100%);
 }
 .flap-bottom {
   clip-path: polygon(0 100%, 100% 100%, 50% 52%);
-  background: linear-gradient(0deg, #d8d6bc 0%, #e6e4cf 100%);
+  background: linear-gradient(0deg, var(--color-paper-400) 0%, var(--color-paper-300) 100%);
   border-radius: 0 0 9px 9px;
 }
 
@@ -364,13 +369,23 @@ onBeforeUnmount(() => {
 }
 /* Cara exterior: la que se ve con el sobre cerrado. */
 .flap-face--out {
-  background: linear-gradient(180deg, #f3f1e3 0%, #e9e7d4 70%, #dddbc4 100%);
-  filter: drop-shadow(0 4px 5px rgba(60, 66, 40, 0.22));
+  background: linear-gradient(
+    180deg,
+    var(--color-paper-100) 0%,
+    var(--color-paper-200) 70%,
+    var(--color-paper-300) 100%
+  );
+  filter: drop-shadow(0 4px 5px rgb(var(--rgb-shadow) / 0.22));
 }
 /* Forro interior: aparece al pasar de los 90°. Más oscuro junto al pliegue,
    como el papel que queda a la sombra. */
 .flap-face--in {
-  background: linear-gradient(180deg, #d5d1b6 0%, #e3dfcb 55%, #edeada 100%);
+  background: linear-gradient(
+    180deg,
+    var(--color-paper-400) 0%,
+    var(--color-paper-300) 55%,
+    var(--color-paper-200) 100%
+  );
 }
 
 /* Textura de papel (grano fino) */
@@ -391,7 +406,7 @@ onBeforeUnmount(() => {
   border-radius: 9px;
   background:
     radial-gradient(80% 55% at 50% 8%, rgba(255, 255, 255, 0.45), transparent 60%),
-    radial-gradient(120% 90% at 50% 55%, transparent 55%, rgba(60, 66, 40, 0.12) 100%);
+    radial-gradient(120% 90% at 50% 55%, transparent 55%, rgb(var(--rgb-shadow) / 0.12) 100%);
 }
 
 /* Brillo viajero del reposo (recortado al contorno del sobre) */
@@ -429,7 +444,7 @@ onBeforeUnmount(() => {
   z-index: 5;
   transform: translate(-50%, -50%);
   border-radius: 9999px;
-  background: radial-gradient(closest-side, rgba(60, 66, 40, 0.28), transparent 72%);
+  background: radial-gradient(closest-side, rgb(var(--rgb-shadow) / 0.28), transparent 72%);
   pointer-events: none;
 }
 

@@ -21,8 +21,10 @@
       <!-- puntos extremos -->
       <circle cx="24" cy="14" r="1.5" opacity="0.5" />
       <circle cx="176" cy="14" r="1.5" opacity="0.5" />
-      <!-- rombo central -->
-      <path d="M100 4l6.5 10-6.5 10-6.5-10z" opacity="0.75" />
+    </g>
+    <g>
+      <!-- rombo central, en oro -->
+      <path d="M100 4l6.5 10-6.5 10-6.5-10z" fill="var(--color-gold-400)" />
     </g>
   </svg>
 </template>
