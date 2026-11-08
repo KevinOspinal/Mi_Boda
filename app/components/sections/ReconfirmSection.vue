@@ -44,7 +44,7 @@ async function respond(coming: boolean) {
 
         <!-- Pendiente de reconfirmar -->
         <template v-if="reconfirmed === null">
-          <p class="text-[0.68rem] uppercase tracking-[0.4em] text-primary/70">Se acerca el gran día</p>
+          <p class="text-[0.68rem] uppercase tracking-[0.4em] text-primary">Se acerca el gran día</p>
           <h3 class="mt-4 font-display text-3xl font-light leading-tight text-ink sm:text-4xl">
             ¿Nos acompañarás?
           </h3>
@@ -53,7 +53,7 @@ async function respond(coming: boolean) {
             Estamos ultimando cada detalle 💛 Para reservar tu lugar con seguridad, por favor
             <strong class="font-medium text-ink">reconfirma</strong> tu asistencia.
           </p>
-          <p v-if="deadlineLabel" class="mt-3 text-xs uppercase tracking-[0.2em] text-primary/70">
+          <p v-if="deadlineLabel" class="mt-3 text-xs uppercase tracking-[0.2em] text-primary">
             Antes del {{ deadlineLabel }}
           </p>
 

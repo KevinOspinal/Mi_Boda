@@ -13,7 +13,7 @@ withDefaults(
   <div :class="align === 'center' ? 'text-center' : 'text-left'">
     <p
       v-if="kicker"
-      class="mb-5 text-[0.7rem] uppercase tracking-[0.45em] text-primary/80"
+      class="mb-5 text-[0.7rem] uppercase tracking-[0.45em] text-primary"
     >
       {{ kicker }}
     </p>

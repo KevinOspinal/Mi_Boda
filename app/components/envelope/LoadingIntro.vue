@@ -41,6 +41,6 @@ onBeforeUnmount(() => ctx?.revert())
       {{ monogram }}
     </p>
     <div ref="line" class="my-6 h-px w-24 origin-center bg-primary/50" aria-hidden="true" />
-    <p ref="label" class="text-xs uppercase tracking-[0.5em] text-ink-soft/70">Nuestra Boda</p>
+    <p ref="label" class="text-xs uppercase tracking-[0.5em] text-ink-soft">Nuestra Boda</p>
   </div>
 </template>

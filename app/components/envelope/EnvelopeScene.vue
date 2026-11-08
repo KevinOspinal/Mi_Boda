@@ -44,7 +44,7 @@ function skip() {
 
     <button
       type="button"
-      class="absolute bottom-6 right-6 text-[0.65rem] uppercase tracking-[0.3em] text-ink-soft/50 transition hover:text-ink-soft"
+      class="absolute bottom-6 right-6 text-[0.65rem] uppercase tracking-[0.3em] text-ink-soft transition hover:text-ink-soft"
       @click="skip"
     >
       Saltar intro

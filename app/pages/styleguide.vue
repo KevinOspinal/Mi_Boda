@@ -53,31 +53,31 @@ const mesa2 = {
 
     <!-- Tipografía -->
     <section class="mt-16 space-y-6">
-      <h3 class="text-xs uppercase tracking-[0.3em] text-ink-soft/60">Tipografía</h3>
+      <h3 class="text-xs uppercase tracking-[0.3em] text-ink-soft">Tipografía</h3>
       <p class="font-display text-6xl font-light text-ink">Cormorant Garamond</p>
       <p class="font-display text-3xl font-light italic text-primary">El día más especial</p>
-      <p class="font-sans text-base text-ink-soft/80">
+      <p class="font-sans text-base text-ink-soft">
         Inter — texto de interfaz, legible y neutro para acompañar la serif editorial.
       </p>
     </section>
 
     <!-- Paleta -->
     <section class="mt-16">
-      <h3 class="mb-6 text-xs uppercase tracking-[0.3em] text-ink-soft/60">Paleta</h3>
+      <h3 class="mb-6 text-xs uppercase tracking-[0.3em] text-ink-soft">Paleta</h3>
       <div class="grid grid-cols-2 gap-4 sm:grid-cols-4">
         <div v-for="c in colors" :key="c.name" class="space-y-2">
           <div
             class="h-16 rounded-lg border border-line"
             :style="{ backgroundColor: c.value }"
           />
-          <p class="text-xs text-ink-soft/70">{{ c.name }}</p>
+          <p class="text-xs text-ink-soft">{{ c.name }}</p>
         </div>
       </div>
     </section>
 
     <!-- Botones -->
     <section class="mt-16">
-      <h3 class="mb-6 text-xs uppercase tracking-[0.3em] text-ink-soft/60">Botones</h3>
+      <h3 class="mb-6 text-xs uppercase tracking-[0.3em] text-ink-soft">Botones</h3>
       <div class="flex flex-wrap items-center gap-4">
         <AppButton variant="primary">Confirmar</AppButton>
         <AppButton variant="outline">Ver más</AppButton>
@@ -87,27 +87,27 @@ const mesa2 = {
 
     <!-- Control de música -->
     <section class="mt-16">
-      <h3 class="mb-6 text-xs uppercase tracking-[0.3em] text-ink-soft/60">Control de música</h3>
+      <h3 class="mb-6 text-xs uppercase tracking-[0.3em] text-ink-soft">Control de música</h3>
       <MusicToggle :active="musicActive" @toggle="musicActive = !musicActive" />
     </section>
 
     <!-- Reveal por scroll -->
     <section class="mt-16">
-      <h3 class="mb-6 text-xs uppercase tracking-[0.3em] text-ink-soft/60">
+      <h3 class="mb-6 text-xs uppercase tracking-[0.3em] text-ink-soft">
         Reveal por scroll (baja para verlo)
       </h3>
       <div class="space-y-24 py-24">
         <AppReveal v-for="n in 3" :key="n">
           <div class="rounded-xl border border-primary/20 bg-surface-alt/40 p-10 text-center">
             <p class="font-display text-2xl text-ink">Bloque {{ n }}</p>
-            <p class="mt-2 text-sm text-ink-soft/70">Aparece con elegancia al entrar en pantalla.</p>
+            <p class="mt-2 text-sm text-ink-soft">Aparece con elegancia al entrar en pantalla.</p>
           </div>
         </AppReveal>
       </div>
     </section>
     <!-- Mesa (Fase 4) -->
     <section class="mt-16">
-      <h3 class="mb-8 text-xs uppercase tracking-[0.3em] text-ink-soft/60">Mesa — vista del invitado</h3>
+      <h3 class="mb-8 text-xs uppercase tracking-[0.3em] text-ink-soft">Mesa — vista del invitado</h3>
       <div class="space-y-16">
         <MesaReveal :mesa="mesaHonor" />
         <MesaReveal :mesa="mesa2" />

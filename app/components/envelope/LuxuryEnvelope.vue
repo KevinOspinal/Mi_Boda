@@ -138,7 +138,7 @@ onBeforeUnmount(() => {
 
 <template>
   <div ref="root" class="flex flex-col items-center">
-    <p class="mb-8 text-xs uppercase tracking-[0.5em] text-ink-soft/70">Estás invitado</p>
+    <p class="mb-8 text-xs uppercase tracking-[0.5em] text-ink-soft">Estás invitado</p>
 
     <button
       type="button"
@@ -196,7 +196,7 @@ onBeforeUnmount(() => {
       </div>
     </button>
 
-    <p ref="hint" class="mt-10 text-xs uppercase tracking-[0.35em] text-ink-soft/60">
+    <p ref="hint" class="mt-10 text-xs uppercase tracking-[0.35em] text-ink-soft">
       Toca el sobre para abrir
     </p>
   </div>

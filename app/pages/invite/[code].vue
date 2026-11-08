@@ -122,14 +122,14 @@ useSeoMeta({
     >
       <template v-if="error?.statusCode === 404">
         <h1 class="font-display text-4xl font-light text-ink">Invitación no encontrada</h1>
-        <p class="mt-4 max-w-sm text-ink-soft/70">
+        <p class="mt-4 max-w-sm text-ink-soft">
           No encontramos una invitación con este enlace. Verifica el link que te compartieron.
         </p>
       </template>
 
       <template v-else>
         <h1 class="font-display text-4xl font-light text-ink">Ups, algo salió mal</h1>
-        <p class="mt-4 max-w-sm text-ink-soft/70">
+        <p class="mt-4 max-w-sm text-ink-soft">
           No pudimos cargar tu invitación en este momento. Vuelve a intentarlo.
         </p>
         <AppButton

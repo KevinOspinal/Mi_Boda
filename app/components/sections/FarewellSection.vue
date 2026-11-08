@@ -68,7 +68,7 @@ const petals = Array.from({ length: 16 }, () => ({
       <p class="mx-auto mt-6 max-w-md text-balance leading-relaxed text-on-night-soft">
         {{ farewell.message }}
       </p>
-      <p class="mt-10 text-xs uppercase tracking-[0.4em] text-on-night-soft/60">
+      <p class="mt-10 text-xs uppercase tracking-[0.4em] text-on-night-soft">
         Con amor, {{ monogram }}
       </p>
     </AppReveal>

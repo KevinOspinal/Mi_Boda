@@ -65,7 +65,7 @@ onBeforeUnmount(() => ctx?.revert())
       ✦ {{ guest.groupLabel }}
     </p>
 
-    <p data-reveal class="mb-5 text-[0.7rem] uppercase tracking-[0.55em] text-primary/70">
+    <p data-reveal class="mb-5 text-[0.7rem] uppercase tracking-[0.55em] text-primary">
       {{ guest.maxPasses > 1 ? 'Bienvenidos' : 'Bienvenido' }}
     </p>
 
@@ -79,20 +79,20 @@ onBeforeUnmount(() => ctx?.revert())
       {{ coupleNames }}
     </p>
 
-    <p data-reveal class="mt-6 max-w-sm text-balance leading-relaxed text-ink-soft/80">
+    <p data-reveal class="mt-6 max-w-sm text-balance leading-relaxed text-ink-soft">
       Con toda nuestra ilusión, te esperamos para celebrar este día tan especial.
     </p>
 
     <p
       data-reveal
-      class="mt-5 inline-flex items-center gap-2 rounded-full border border-line px-4 py-1.5 text-xs text-ink-soft/70"
+      class="mt-5 inline-flex items-center gap-2 rounded-full border border-line px-4 py-1.5 text-xs text-ink-soft"
     >
       <span class="text-primary">♥</span>
       {{ guest.maxPasses > 1 ? `${guest.maxPasses} pases reservados` : '1 pase reservado' }}
     </p>
 
     <div data-reveal class="absolute bottom-14 flex flex-col items-center gap-2">
-      <span class="text-[0.65rem] uppercase tracking-[0.3em] text-ink-soft/50">Desliza</span>
+      <span class="text-[0.65rem] uppercase tracking-[0.3em] text-ink-soft">Desliza</span>
       <span class="h-8 w-px animate-pulse bg-primary/40" aria-hidden="true" />
     </div>
   </section>

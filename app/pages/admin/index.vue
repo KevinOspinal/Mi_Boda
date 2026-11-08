@@ -102,7 +102,7 @@ function fmtDate(iso: string | null) {
     <!-- ══ Encabezado ══ -->
     <header class="flex flex-wrap items-end justify-between gap-4 border-b border-line pb-6">
       <div>
-        <p class="mb-2 text-[0.68rem] uppercase tracking-[0.4em] text-primary/70">Panel de novios</p>
+        <p class="mb-2 text-[0.68rem] uppercase tracking-[0.4em] text-primary">Panel de novios</p>
         <h1 class="font-display text-4xl font-light leading-none text-ink sm:text-5xl">
           {{ wedding.couple.groomFirstName }}
           <span class="italic text-primary">&amp;</span>
@@ -200,7 +200,7 @@ function fmtDate(iso: string | null) {
       <!-- Controles -->
       <div class="mt-5 space-y-4">
         <div class="relative">
-          <svg class="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-soft/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+          <svg class="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-soft" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
             <circle cx="11" cy="11" r="7" />
             <path d="M21 21l-4-4" stroke-linecap="round" />
           </svg>
@@ -208,7 +208,7 @@ function fmtDate(iso: string | null) {
             v-model="search"
             type="search"
             placeholder="Buscar por nombre o grupo…"
-            class="w-full rounded-full border border-line bg-white py-3 pl-11 pr-4 text-ink outline-none transition-colors placeholder:text-ink-soft/40 focus:border-primary/70"
+            class="w-full rounded-full border border-line bg-white py-3 pl-11 pr-4 text-ink outline-none transition-colors placeholder:text-ink-soft focus:border-primary/70"
           >
         </div>
 
@@ -252,7 +252,7 @@ function fmtDate(iso: string | null) {
                 <span v-if="g.groupLabel">{{ g.groupLabel }}</span>
                 <span v-if="g.groupLabel" class="h-0.5 w-0.5 rounded-full bg-ink-soft/40" />
                 <span>{{ g.rsvp?.guestsCount ?? 0 }}/{{ g.maxPasses }} pases</span>
-                <span v-if="g.openedAt" class="hidden items-center gap-1 text-primary/70 sm:inline-flex">
+                <span v-if="g.openedAt" class="hidden items-center gap-1 text-primary sm:inline-flex">
                   <span class="h-0.5 w-0.5 rounded-full bg-ink-soft/40" />
                   visto
                 </span>

@@ -41,7 +41,7 @@ useSeoMeta({
       class="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_45%_at_50%_35%,rgba(143,63,68,0.12),transparent_70%)]"
     />
 
-    <p class="mb-6 text-sm uppercase tracking-[0.4em] text-ink-soft/70">
+    <p class="mb-6 text-sm uppercase tracking-[0.4em] text-ink-soft">
       {{ wedding.hero.saveTheDate }}
     </p>
 
@@ -56,11 +56,11 @@ useSeoMeta({
     <p v-if="venue" class="mt-8 font-display text-2xl font-light text-ink sm:text-3xl">
       {{ venue.name }}
     </p>
-    <p v-if="venue" class="mt-2 text-sm text-ink-soft/70">
+    <p v-if="venue" class="mt-2 text-sm text-ink-soft">
       {{ venue.address }}
     </p>
 
-    <p class="mt-10 max-w-md text-balance text-sm leading-relaxed text-ink-soft/80">
+    <p class="mt-10 max-w-md text-balance text-sm leading-relaxed text-ink-soft">
       Cada invitado recibe su enlace personal por WhatsApp, con los detalles del día y el
       espacio para confirmar su asistencia. Si aún no te ha llegado, escríbenos.
     </p>

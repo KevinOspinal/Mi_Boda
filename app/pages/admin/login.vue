@@ -33,7 +33,7 @@ function onSubmit() {
       <BotanicalSprig class="pointer-events-none absolute -right-3 -top-6 w-12 -rotate-[18deg] opacity-70" />
 
       <header class="text-center">
-        <p class="mb-4 text-[0.68rem] uppercase tracking-[0.45em] text-primary/70">Administración</p>
+        <p class="mb-4 text-[0.68rem] uppercase tracking-[0.45em] text-primary">Administración</p>
         <h1 class="font-display text-4xl font-light leading-tight text-ink sm:text-[2.75rem]">
           {{ wedding.couple.groomFirstName }}
           <span class="text-primary italic">&amp;</span>
@@ -58,11 +58,11 @@ function onSubmit() {
               autocomplete="current-password"
               autofocus
               placeholder="••••••••"
-              class="w-full rounded-full border border-line bg-surface/60 px-5 py-3.5 pr-14 text-ink outline-none transition-colors placeholder:text-ink-soft/40 focus:border-primary/70 focus:bg-white"
+              class="w-full rounded-full border border-line bg-surface/60 px-5 py-3.5 pr-14 text-ink outline-none transition-colors placeholder:text-ink-soft focus:border-primary/70 focus:bg-white"
             >
             <button
               type="button"
-              class="absolute right-2 top-1/2 -translate-y-1/2 rounded-full p-2 text-ink-soft/60 transition-colors hover:text-primary"
+              class="absolute right-2 top-1/2 -translate-y-1/2 rounded-full p-2 text-ink-soft transition-colors hover:text-primary"
               :aria-label="showPassword ? 'Ocultar clave' : 'Mostrar clave'"
               @click="showPassword = !showPassword"
             >
@@ -102,7 +102,7 @@ function onSubmit() {
 
       <NuxtLink
         to="/"
-        class="mt-8 flex items-center justify-center gap-1.5 text-[0.72rem] uppercase tracking-[0.25em] text-ink-soft/70 transition-colors hover:text-primary"
+        class="mt-8 flex items-center justify-center gap-1.5 text-[0.72rem] uppercase tracking-[0.25em] text-ink-soft transition-colors hover:text-primary"
       >
         <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
           <path d="M15 6l-6 6 6 6" stroke-linecap="round" stroke-linejoin="round" />

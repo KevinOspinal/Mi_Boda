@@ -46,7 +46,7 @@ const pad = (n: number) => String(n).padStart(2, '0')
             >
               {{ pad(u.value) }}
             </span>
-            <span class="mt-3 text-[0.6rem] uppercase tracking-[0.25em] text-on-night-soft/70">
+            <span class="mt-3 text-[0.6rem] uppercase tracking-[0.25em] text-on-night-soft">
               {{ u.label }}
             </span>
           </div>

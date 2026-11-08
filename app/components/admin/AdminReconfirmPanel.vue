@@ -64,7 +64,7 @@ function fmt(iso: string | null) {
   >
     <div class="flex flex-wrap items-center justify-between gap-3">
       <div>
-        <p class="text-[0.68rem] uppercase tracking-[0.3em] text-primary/70">Reconfirmación</p>
+        <p class="text-[0.68rem] uppercase tracking-[0.3em] text-primary">Reconfirmación</p>
         <h2 class="mt-1 font-display text-2xl font-light text-ink">
           Ventana de reconfirmación
         </h2>
@@ -104,7 +104,7 @@ function fmt(iso: string | null) {
           Forzada <strong class="text-ink">cerrada</strong>: nadie verá el aviso, aunque llegue la fecha.
         </template>
       </p>
-      <p v-if="data.deadline" class="mt-1 text-xs text-ink-soft/70">
+      <p v-if="data.deadline" class="mt-1 text-xs text-ink-soft">
         Fecha límite mostrada a los invitados: {{ fmt(data.deadline) }}
       </p>
 
@@ -142,7 +142,7 @@ function fmt(iso: string | null) {
             {{ saving ? 'Guardando…' : 'Guardar' }}
           </button>
         </div>
-        <p class="mt-2 text-xs text-ink-soft/70">
+        <p class="mt-2 text-xs text-ink-soft">
           Con la boda el 11 de octubre, {{ diasApertura }} días antes = se abriría el
           <strong class="text-ink">{{ previewApertura }}</strong> (en modo automático).
         </p>

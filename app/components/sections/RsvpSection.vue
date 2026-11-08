@@ -75,7 +75,7 @@ async function onSubmit() {
 }
 
 const field =
-  'w-full rounded-lg border border-line bg-white px-4 py-3 text-ink placeholder:text-ink-soft/50 transition focus:border-primary focus:outline-none'
+  'w-full rounded-lg border border-line bg-white px-4 py-3 text-ink placeholder:text-ink-soft transition focus:border-primary focus:outline-none'
 </script>
 
 <template>
@@ -121,7 +121,7 @@ const field =
           </template>
           <template v-else> Lamentamos que no puedas acompañarnos. ¡Te tendremos presente! </template>
         </p>
-        <p class="mt-5 text-[0.65rem] uppercase tracking-[0.25em] text-ink-soft/50">
+        <p class="mt-5 text-[0.65rem] uppercase tracking-[0.25em] text-ink-soft">
           Tu respuesta quedó guardada
         </p>
       </div>
@@ -130,7 +130,7 @@ const field =
       <form v-else class="mt-8 space-y-6" @submit.prevent="onSubmit">
         <!-- Asistencia -->
         <fieldset>
-          <legend class="mb-3 block text-xs uppercase tracking-[0.2em] text-ink-soft/70">
+          <legend class="mb-3 block text-xs uppercase tracking-[0.2em] text-ink-soft">
             ¿Confirmas tu asistencia?
           </legend>
           <div class="grid grid-cols-2 gap-3">
@@ -164,7 +164,7 @@ const field =
         <!-- Detalles (solo si asiste) -->
         <template v-if="attending === true">
           <div v-if="guest.maxPasses > 1">
-            <label class="mb-2 block text-xs uppercase tracking-[0.2em] text-ink-soft/70">
+            <label class="mb-2 block text-xs uppercase tracking-[0.2em] text-ink-soft">
               ¿Cuántos asistirán?
             </label>
             <div class="flex items-center gap-4">
@@ -196,7 +196,7 @@ const field =
 
         <!-- Mensaje (siempre) -->
         <div>
-          <label for="rsvp-msg" class="mb-2 block text-xs uppercase tracking-[0.2em] text-ink-soft/70">
+          <label for="rsvp-msg" class="mb-2 block text-xs uppercase tracking-[0.2em] text-ink-soft">
             Mensaje para los novios
           </label>
           <textarea id="rsvp-msg" v-model="message" :class="field" rows="3" />
@@ -213,12 +213,12 @@ const field =
     <!-- Mesa asignada (solo si confirmó asistencia y tiene mesa) -->
     <div ref="mesaEl" class="scroll-mt-8">
       <AppReveal v-if="mesa" :delay="0.15" class="mt-16 text-center">
-      <p class="mb-2 text-[0.7rem] uppercase tracking-[0.45em] text-primary/70">Tu ubicación</p>
+      <p class="mb-2 text-[0.7rem] uppercase tracking-[0.45em] text-primary">Tu ubicación</p>
       <h3 class="mb-10 font-display text-2xl text-ink sm:text-3xl">
         Te esperamos en la {{ mesa.nombre }}
       </h3>
       <MesaReveal :mesa="mesa" />
-      <p class="mx-auto mt-10 max-w-xs text-balance text-sm leading-relaxed text-ink-soft/80">
+      <p class="mx-auto mt-10 max-w-xs text-balance text-sm leading-relaxed text-ink-soft">
         Este es tu lugar y quienes compartirán la mesa contigo 🌿
       </p>
       </AppReveal>
