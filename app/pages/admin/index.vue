@@ -100,7 +100,9 @@ function fmtDate(iso: string | null) {
 <template>
   <div class="mx-auto max-w-6xl px-5 pb-24 pt-8 sm:px-8">
     <!-- ══ Encabezado ══ -->
-    <header class="flex flex-wrap items-end justify-between gap-4 border-b border-line pb-6">
+    <header
+      class="flex flex-col gap-4 border-b border-line pb-6 sm:flex-row sm:flex-wrap sm:items-end sm:justify-between"
+    >
       <div>
         <p class="mb-2 text-[0.68rem] uppercase tracking-[0.4em] text-primary">Panel de novios</p>
         <h1 class="font-display text-4xl font-light leading-none text-ink sm:text-5xl">
@@ -109,9 +111,9 @@ function fmtDate(iso: string | null) {
           {{ wedding.couple.brideFirstName }}
         </h1>
       </div>
-      <div class="flex items-center gap-2">
+      <div class="flex flex-wrap items-center gap-2">
         <button
-          class="inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 text-xs uppercase tracking-[0.15em] text-ink-soft transition-colors hover:border-primary/50 hover:text-primary"
+          class="inline-flex min-h-11 items-center gap-2 rounded-full border border-line px-4 text-xs uppercase tracking-[0.15em] text-ink-soft transition-colors hover:border-primary/50 hover:text-primary sm:min-h-0 sm:py-2"
           @click="refresh()"
         >
           <svg class="h-4 w-4" :class="pending && 'animate-spin'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
@@ -122,7 +124,7 @@ function fmtDate(iso: string | null) {
         <a
           href="/api/admin/backup"
           download
-          class="inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 text-xs uppercase tracking-[0.15em] text-ink-soft transition-colors hover:border-primary/50 hover:text-primary"
+          class="inline-flex min-h-11 items-center gap-2 rounded-full border border-line px-4 text-xs uppercase tracking-[0.15em] text-ink-soft transition-colors hover:border-primary/50 hover:text-primary sm:min-h-0 sm:py-2"
           title="Descarga un .sql con todos los invitados, confirmaciones y mesas"
         >
           <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
@@ -131,7 +133,7 @@ function fmtDate(iso: string | null) {
           Respaldo
         </a>
         <button
-          class="inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 text-xs uppercase tracking-[0.15em] text-ink-soft transition-colors hover:border-rose-300 hover:text-rose-600"
+          class="inline-flex min-h-11 items-center gap-2 rounded-full border border-line px-4 text-xs uppercase tracking-[0.15em] text-ink-soft transition-colors hover:border-rose-300 hover:text-rose-600 sm:min-h-0 sm:py-2"
           @click="logout()"
         >
           <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
@@ -160,7 +162,9 @@ function fmtDate(iso: string | null) {
         </div>
         <div class="mt-3 flex items-center justify-between text-sm text-ink-soft">
           <span>{{ confirmPct }}% respondió que sí</span>
-          <span class="font-medium text-primary">{{ stats?.personas ?? 0 }} personas asistirán</span>
+          <span class="font-medium text-primary">
+            {{ (stats?.personas ?? 0) === 1 ? '1 persona asistirá' : `${stats?.personas ?? 0} personas asistirán` }}
+          </span>
         </div>
       </div>
 
@@ -216,7 +220,7 @@ function fmtDate(iso: string | null) {
           <button
             v-for="tab in statusTabs"
             :key="tab.key"
-            class="rounded-full border px-4 py-1.5 text-xs uppercase tracking-[0.12em] transition-colors"
+            class="min-h-9 rounded-full border px-4 text-xs uppercase tracking-[0.12em] transition-colors sm:min-h-0 sm:py-1.5"
             :class="statusFilter === tab.key ? 'border-primary bg-primary text-white' : 'border-line text-ink-soft hover:border-primary/50 hover:text-primary'"
             @click="statusFilter = tab.key"
           >
@@ -225,7 +229,7 @@ function fmtDate(iso: string | null) {
           <span v-if="groups.length" class="mx-1 hidden h-5 w-px bg-line sm:block" />
           <select
             v-model="groupFilter"
-            class="rounded-full border border-line bg-white px-4 py-1.5 text-xs uppercase tracking-[0.12em] text-ink-soft outline-none transition-colors focus:border-primary/70"
+            class="min-h-9 w-full rounded-full border border-line bg-white px-4 text-xs uppercase tracking-[0.12em] text-ink-soft outline-none transition-colors focus:border-primary/70 sm:min-h-0 sm:w-auto sm:py-1.5"
           >
             <option value="todos">Todos los grupos</option>
             <option v-for="grp in groups" :key="grp" :value="grp">{{ grp }}</option>
@@ -241,14 +245,16 @@ function fmtDate(iso: string | null) {
           class="overflow-hidden rounded-2xl border border-line bg-white transition-shadow hover:shadow-[0_18px_50px_-38px_rgba(42,24,22,0.5)]"
         >
           <!-- Fila principal -->
-          <div class="flex flex-wrap items-center gap-4 p-4 sm:flex-nowrap">
+          <div class="flex flex-wrap items-center gap-3 p-4 sm:gap-4 sm:flex-nowrap">
             <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-wine-100 font-display text-lg text-primary">
               {{ initials(g.displayName) }}
             </div>
 
             <button class="min-w-0 flex-1 text-left" @click="toggle(g.id)">
-              <p class="truncate font-medium text-ink">{{ g.displayName }}</p>
-              <p class="mt-0.5 flex items-center gap-2 text-xs text-ink-soft">
+              <!-- En móvil el nombre se parte en dos líneas antes que cortarse:
+                   «Adrian, Ampar…» no le sirve a nadie. -->
+              <p class="font-medium text-ink sm:truncate">{{ g.displayName }}</p>
+              <p class="mt-0.5 flex flex-wrap items-center gap-x-2 text-xs text-ink-soft">
                 <span v-if="g.groupLabel">{{ g.groupLabel }}</span>
                 <span v-if="g.groupLabel" class="h-0.5 w-0.5 rounded-full bg-ink-soft/40" />
                 <span>{{ g.rsvp?.guestsCount ?? 0 }}/{{ g.maxPasses }} pases</span>
@@ -276,10 +282,11 @@ function fmtDate(iso: string | null) {
               </span>
             </div>
 
-            <!-- Acciones -->
-            <div class="flex shrink-0 items-center gap-1">
+            <!-- Acciones. En móvil ocupan una línea entera y WhatsApp va con
+                 texto: es lo que de verdad se usa desde el teléfono. -->
+            <div class="flex w-full shrink-0 items-center gap-2 sm:w-auto sm:gap-1">
               <button
-                class="relative rounded-full p-2.5 text-ink-soft transition-colors hover:bg-wine-50 hover:text-primary"
+                class="relative grid h-11 w-11 shrink-0 place-items-center rounded-full text-ink-soft transition-colors hover:bg-wine-50 hover:text-primary sm:h-10 sm:w-10"
                 title="Copiar enlace de invitación"
                 @click="copy(g.inviteUrl, g.id + ':link')"
               >
@@ -294,19 +301,20 @@ function fmtDate(iso: string | null) {
                 :href="g.whatsappUrl"
                 target="_blank"
                 rel="noopener"
-                class="rounded-full p-2.5 text-ink-soft transition-colors hover:bg-wine-50 hover:text-primary"
+                class="inline-flex h-11 flex-1 items-center justify-center gap-2 rounded-full bg-primary px-4 text-xs font-medium uppercase tracking-[0.12em] text-white transition-colors hover:bg-wine-600 sm:h-10 sm:w-10 sm:flex-none sm:gap-0 sm:bg-transparent sm:px-0 sm:text-ink-soft sm:hover:bg-wine-50 sm:hover:text-primary"
                 title="Enviar por WhatsApp"
               >
                 <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.79 1.22c5.46 0 9.9-4.44 9.9-9.9S17.5 2 12.04 2zm0 18.13a8.2 8.2 0 01-4.19-1.15l-.3-.18-3.11.82.83-3.03-.2-.31a8.23 8.23 0 1115.28-4.38 8.23 8.23 0 01-8.11 8.42zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.42l-.48-.01c-.16 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.13.16 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.47-.07 1.47-.6 1.68-1.18.2-.58.2-1.07.14-1.18-.06-.11-.22-.17-.47-.29z" />
                 </svg>
+                <span class="sm:hidden">Enviar</span>
               </a>
               <a
                 v-if="g.reconfirmStatus !== 'no_aplica'"
                 :href="g.reconfirmWhatsappUrl"
                 target="_blank"
                 rel="noopener"
-                class="rounded-full p-2.5 text-ink-soft transition-colors hover:bg-amber-50 hover:text-amber-600"
+                class="grid h-11 w-11 shrink-0 place-items-center rounded-full text-ink-soft transition-colors hover:bg-amber-50 hover:text-amber-600 sm:h-10 sm:w-10"
                 title="Pedir reconfirmación por WhatsApp"
               >
                 <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
@@ -315,7 +323,7 @@ function fmtDate(iso: string | null) {
                 </svg>
               </a>
               <button
-                class="rounded-full p-2.5 text-ink-soft transition-transform hover:text-primary"
+                class="grid h-11 w-11 shrink-0 place-items-center rounded-full text-ink-soft transition-transform hover:text-primary sm:h-10 sm:w-10"
                 :class="expanded.has(g.id) && 'rotate-180 text-primary'"
                 title="Ver detalle"
                 @click="toggle(g.id)"
@@ -342,10 +350,10 @@ function fmtDate(iso: string | null) {
                   <dt class="text-[0.65rem] uppercase tracking-[0.2em] text-ink-soft">Enlace personal</dt>
                   <dd class="mt-1">
                     <button
-                      class="flex max-w-full items-center gap-2 text-sm text-primary hover:underline"
+                      class="flex w-full items-center gap-2 text-left text-sm text-primary hover:underline"
                       @click="copy(g.inviteUrl, g.id + ':link2')"
                     >
-                      <span class="truncate">{{ g.inviteUrl }}</span>
+                      <span class="min-w-0 flex-1 truncate">{{ g.inviteUrl }}</span>
                       <span class="shrink-0 text-[0.65rem] uppercase tracking-wider text-ink-soft">
                         {{ copiedKey === g.id + ':link2' ? '¡copiado!' : 'copiar' }}
                       </span>
@@ -358,7 +366,7 @@ function fmtDate(iso: string | null) {
                 </div>
                 <div v-if="g.rsvp">
                   <dt class="text-[0.65rem] uppercase tracking-[0.2em] text-ink-soft">Asistentes</dt>
-                  <dd class="mt-1 text-sm text-ink">{{ g.rsvp.attendeeNames || `${g.rsvp.guestsCount} persona(s)` }}</dd>
+                  <dd class="mt-1 text-sm text-ink">{{ g.rsvp.attendeeNames || (g.rsvp.guestsCount === 1 ? '1 persona' : `${g.rsvp.guestsCount} personas`) }}</dd>
                 </div>
                 <div v-if="g.rsvp?.dietary">
                   <dt class="text-[0.65rem] uppercase tracking-[0.2em] text-ink-soft">Restricciones</dt>

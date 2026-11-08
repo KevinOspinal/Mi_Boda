@@ -7,7 +7,7 @@ const saving = ref(false)
 
 const overrides: { key: AdminReconfirm['override']; label: string }[] = [
   { key: 'auto', label: 'Automática' },
-  { key: 'abrir', label: 'Abrir ahora' },
+  { key: 'abrir', label: 'Abrir' },
   { key: 'cerrar', label: 'Cerrar' },
 ]
 
@@ -51,6 +51,12 @@ const previewApertura = computed(() => {
   return d.toLocaleDateString('es-CO', { day: 'numeric', month: 'long', year: 'numeric' })
 })
 
+// La fecha de la boda sale de la configuración, nunca escrita a mano: si se
+// cambia el evento, este texto cambia solo.
+const fechaBoda = computed(() =>
+  new Date(weddingDayStart).toLocaleDateString('es-CO', { day: 'numeric', month: 'long' }),
+)
+
 function fmt(iso: string | null) {
   if (!iso) return '—'
   return new Date(iso).toLocaleDateString('es-CO', { day: 'numeric', month: 'long', year: 'numeric' })
@@ -80,11 +86,13 @@ function fmt(iso: string | null) {
 
     <!-- Control segmentado -->
     <div class="mt-5">
-      <div class="inline-flex flex-wrap gap-1 rounded-full border border-line bg-surface-alt/40 p-1">
+      <div
+        class="grid grid-cols-3 gap-1 rounded-full border border-line bg-surface-alt/40 p-1 sm:inline-flex sm:w-auto"
+      >
         <button
           v-for="o in overrides"
           :key="o.key"
-          class="rounded-full px-4 py-1.5 text-xs uppercase tracking-[0.1em] transition-colors disabled:opacity-50"
+          class="min-h-10 rounded-full px-2 text-[0.68rem] uppercase tracking-[0.08em] transition-colors disabled:opacity-50 sm:min-h-0 sm:px-4 sm:py-1.5 sm:text-xs sm:tracking-[0.1em]"
           :class="data.override === o.key ? 'bg-primary text-white' : 'text-ink-soft hover:text-primary'"
           :disabled="saving"
           @click="setOverride(o.key)"
@@ -111,31 +119,31 @@ function fmt(iso: string | null) {
       <!-- Parámetro editable: días antes de la boda -->
       <div class="mt-4 rounded-2xl border border-line bg-surface-alt/30 p-4">
         <p class="text-[0.65rem] uppercase tracking-[0.2em] text-ink-soft">Cuándo se abre (parametrizable)</p>
-        <div class="mt-3 flex flex-wrap items-end gap-x-6 gap-y-3">
-          <label class="flex items-center gap-2 text-sm text-ink-soft">
+        <div class="mt-3 grid gap-3 sm:flex sm:flex-wrap sm:items-end sm:gap-x-6 sm:gap-y-3">
+          <label class="flex items-center justify-between gap-2 text-sm text-ink-soft sm:justify-start">
             Se abre
             <input
               v-model.number="diasApertura"
               type="number"
               min="0"
               max="180"
-              class="w-16 rounded-lg border border-line bg-white px-2 py-1.5 text-center text-ink outline-none focus:border-primary/70"
+              class="min-h-11 w-20 rounded-lg border border-line bg-white px-2 text-center text-ink outline-none focus:border-primary/70 sm:min-h-0 sm:w-16 sm:py-1.5"
             >
             días antes
           </label>
-          <label class="flex items-center gap-2 text-sm text-ink-soft">
+          <label class="flex items-center justify-between gap-2 text-sm text-ink-soft sm:justify-start">
             Fecha límite
             <input
               v-model.number="diasLimite"
               type="number"
               min="0"
               max="180"
-              class="w-16 rounded-lg border border-line bg-white px-2 py-1.5 text-center text-ink outline-none focus:border-primary/70"
+              class="min-h-11 w-20 rounded-lg border border-line bg-white px-2 text-center text-ink outline-none focus:border-primary/70 sm:min-h-0 sm:w-16 sm:py-1.5"
             >
             días antes
           </label>
           <button
-            class="rounded-full bg-primary px-4 py-1.5 text-xs uppercase tracking-[0.12em] text-white transition-opacity hover:bg-primary-soft disabled:opacity-40"
+            class="min-h-11 w-full rounded-full bg-primary px-4 text-xs uppercase tracking-[0.12em] text-white transition-colors hover:bg-wine-600 disabled:opacity-40 sm:min-h-0 sm:w-auto sm:py-1.5"
             :disabled="!diasChanged || saving"
             @click="saveDias"
           >
@@ -143,7 +151,7 @@ function fmt(iso: string | null) {
           </button>
         </div>
         <p class="mt-2 text-xs text-ink-soft">
-          Con la boda el 11 de octubre, {{ diasApertura }} días antes = se abriría el
+          Con la boda el {{ fechaBoda }}, {{ diasApertura }} días antes = se abriría el
           <strong class="text-ink">{{ previewApertura }}</strong> (en modo automático).
         </p>
       </div>

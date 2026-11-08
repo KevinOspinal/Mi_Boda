@@ -23,14 +23,19 @@ export const wedding: WeddingConfig = {
 
   // Mensajes de WhatsApp. {name} = nombre del invitado · {link} = su enlace.
   messages: {
+    // Marcadores: {name} nombre de la invitación · {link} su enlace personal ·
+    // {passes} «1 pase» / «3 pases» · {singular|plural} elige según los pases,
+    // para que a una familia no se le hable de tú.
     invite: `✨ *Carlos & Yisell se casan* ✨
 
-Hola {name}, con el corazón lleno de alegría queremos invitarte a celebrar nuestra boda 💍
+Hola {name}, con el corazón lleno de alegría queremos {invitarte|invitarlos} a celebrar nuestra boda 💍
 
-🗓️ Sábado 19 de Diciembre de 2026
+🗓️ Sábado 19 de diciembre de 2026
+🕕 Ceremonia · 6:00 p. m.
 📍 Casa Finca Doña Glads · Pradera, Valle
+🎟️ {passes} a {tu|su} nombre
 
-Toca tu invitación personal para ver todos los detalles y confirmar tu asistencia 👇
+Aquí está {tu|su} invitación personal, con todos los detalles y el botón para confirmar 👇
 {link}
 
 Con cariño,
@@ -38,9 +43,9 @@ Carlos & Yisell 🤍`,
 
     reconfirm: `Hola {name} 💍 ¡Ya casi es el gran día!
 
-Como cada lugar en la boda es muy especial para nosotros, te pedimos *reconfirmar* tu asistencia para el *Sábado 19 de Diciembre*.
+Cada lugar en la mesa es muy especial para nosotros, así que {te|les} pedimos *reconfirmar* {tu|su} asistencia para el *sábado 19 de diciembre*.
 
-Reconfírmala en un toque aquí 👇
+Es un solo toque aquí 👇
 {link}
 
 ¡Gracias de corazón!
@@ -123,12 +128,13 @@ Carlos & Yisell 🤍`,
     description: 'Por favor, evita los colores blanco y sus derivados.',
   },
 
-  // Música de fondo: coloca el archivo en public/music/ y pon aquí su ruta.
-  // Desactivada hasta que los novios elijan su canción.
-  // music: {
-  //   src: '/music/cancion.mp3',
-  //   title: 'Nuestra canción',
-  // },
+  // Música de fondo. Arranca sola al tocar el sobre (los navegadores no dejan
+  // sonar nada antes del primer gesto) y se puede silenciar con el botón
+  // flotante de la nota. Suena en bucle al 40 % de volumen.
+  music: {
+    src: '/music/fondo.mp3',
+    title: 'Mi Jesús, mi amado Jesús — Adrián Romero',
+  },
 
   gifts: {
     title: 'Lluvia de sobres',

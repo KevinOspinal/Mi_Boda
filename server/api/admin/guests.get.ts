@@ -52,7 +52,20 @@ export default defineEventHandler(async (event): Promise<AdminGuestsResponse> =>
             : 'por_reconfirmar'
 
     const inviteUrl = `${siteUrl}/invite/${g.code}`
-    const fill = (tpl: string) => tpl.replace(/\{name\}/g, g.display_name).replace(/\{link\}/g, inviteUrl)
+
+    // Las invitaciones son por FAMILIA, así que una de tres pases no puede
+    // recibir un mensaje escrito en tú. `{singular|plural}` resuelve según
+    // los pases y evita tener que mantener dos plantillas paralelas.
+    const varios = g.max_passes > 1
+    const fill = (tpl: string) =>
+      tpl
+        .replace(/\{([^{}|]*)\|([^{}|]*)\}/g, (_m, uno: string, muchos: string) =>
+          varios ? muchos : uno,
+        )
+        .replace(/\{name\}/g, g.display_name)
+        .replace(/\{passes\}/g, varios ? `${g.max_passes} pases` : '1 pase')
+        .replace(/\{link\}/g, inviteUrl)
+
     const suggestedMessage = fill(template)
 
     return {
